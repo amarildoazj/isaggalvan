@@ -96,7 +96,8 @@ body.idle{cursor:none}
 #contact a.pin{flex:none;width:clamp(38px,3vw,52px);height:clamp(38px,3vw,52px);border-radius:50%;background:#fff;color:#111;border:2px solid #111;
   display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.35)}
 #contact a.pin:hover{text-decoration:none}.pin svg{width:56%;height:56%;display:block}
-#contact a.ad{color:var(--muted)}#contact a.ad b{color:var(--ink)}
+#contact a.ad{color:var(--muted)}
+#contact .loc{display:block;margin-top:.15em;font-size:.82em;color:var(--accent)}#contact a.ad b{color:var(--ink)}
 @media(min-width:1000px) and (max-height:820px){
   #card{padding:16px 22px;gap:12px}
   .qr{width:clamp(92px,17vh,230px)}
@@ -210,7 +211,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
       <div class="view1">
         <div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div>
         <div class="pw">
-          <div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · CRP 08/37885<span class="tcc">Especialista em TCC</span></div>
+          <div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div>
           <button class="lk" type="button" data-sob="0">Sobre mim <i>›</i></button>
           <button class="lk" type="button" data-sob="1">Sobre a terapia <i>›</i></button>
         </div>
@@ -219,7 +220,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <div id="sobh"><button id="back" type="button">← Voltar</button><div id="sobt"></div></div>
         <div id="sobb">
           <div class="sec" data-t="Sobre mim e meu trabalho" hidden>
-            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · CRP 08/37885<span class="tcc">Especialista em TCC</span></div></div>
+            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div></div>
             <p>Eu sou a Isa, Psicóloga Clínica (CRP 08/37885), sou formada em Psicologia, pós graduada em Terapia Cognitivo-Comportamental e Neuropsicopedagogia.</p>
             <p>Atuo na área de saúde pública e clínica.</p>
             <p>Estar disposto(a) para iniciar a psicoterapia requer coragem para a encarar a si mesmo, comprometimento e responsabilidade com o seu processo.</p>
@@ -227,7 +228,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
             <p>Podem ser realizados de forma presencial e on-line!<br>E fique tranquilo(a), atendimentos on-line apresentam a mesma eficácia de atendimentos presenciais.</p>
           </div>
           <div class="sec" data-t="Sobre a Terapia Cognitivo-Comportamental" hidden>
-            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · CRP 08/37885<span class="tcc">Especialista em TCC</span></div></div>
+            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div></div>
             <h4>Sobre Terapias Cognitivo-Comportamentais...</h4>
             <blockquote>“As reações das pessoas passam a fazer sentido depois que sabemos o que elas estavam pensando. Não é a situação em si que determina o que as pessoas sentem ou fazem, mas como elas interpretam (pensam sobre) uma situação.”</blockquote>
             <cite>— J. Beck</cite>
@@ -292,7 +293,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
       </a>
       </div>
       <div id="contact">
-        <div class="adw"><a class="pin" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" aria-label="Abrir no Google Maps" title="Abrir no Google Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z" fill="currentColor"/><circle cx="12" cy="10.3" r="2.5" fill="#fff" stroke="none"/></svg></a><a class="ad" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" title="Abrir no Google Maps"><b>Edifício Office One</b><br>Rua Octaviano Teixeira dos Santos, 1561<br>Francisco Beltrão-PR</a></div>
+        <div class="adw"><a class="pin" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" aria-label="Abrir no Google Maps" title="Abrir no Google Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z" fill="currentColor"/><circle cx="12" cy="10.3" r="2.5" fill="#fff" stroke="none"/></svg></a><a class="ad" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" title="Abrir no Google Maps"><b>Edifício Office One</b><br>Rua Octaviano Teixeira dos Santos, 1561<br>Francisco Beltrão-PR<span class="loc">(toque para localizar)</span></a></div>
         <div class="ct"><a href="tel:+5546988009738">Telefone: (46) 988009738</a><a href="mailto:isadoraggalvan@hotmail.com">E-mail: isadoraggalvan@hotmail.com</a></div>
       </div>
     </div>
