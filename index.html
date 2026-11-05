@@ -58,7 +58,7 @@ var CONFIG={
     sobreMimAbrir:'Sobre mim ▲',                    /* botão do celular (aberto/fechado) */
     sobreMimFechar:'▼',
     detalhesAbrir:'+ detalhes ▲',
-    detalhesFechar:'+ detalhes ▼',
+    detalhesFechar:'− detalhes ▼',
     imagem:'IMAGEM',
     ascii:'ASCII'
   },
@@ -171,7 +171,9 @@ body.idle{cursor:none}
 #tag{margin-top:.45em;font-size:clamp(12px,2.2vw,19px);line-height:1.5;color:var(--muted)}
 #mod{display:inline-flex;align-items:center;gap:.55em;margin-top:.7em;padding:.35em .8em;border-radius:99px;
   border:1px solid var(--line);font-size:clamp(11px,2vw,17px);letter-spacing:.03em}
-#mod::before{content:"";width:.6em;height:.6em;border-radius:50%;background:#2fbf71;box-shadow:0 0 8px #2fbf71}
+#mod::before,.modm::before{content:"";width:.6em;height:.6em;border-radius:50%;background:#2fbf71;box-shadow:0 0 8px #2fbf71}
+/* "Atendimentos…" abaixo da foto: só no celular */
+.modm{display:none;align-items:center;gap:.55em;padding:.35em .8em;border-radius:99px;border:1px solid var(--line);letter-spacing:.03em}
 #qrs{flex:none;display:flex;align-items:center;gap:clamp(10px,1.8vw,22px)}
 .qr{flex:none;display:flex;flex-direction:column;align-items:center;gap:7px;width:clamp(84px,15vw,170px);color:var(--ink);text-decoration:none}
 #qrs .qb{position:relative;width:100%}
@@ -268,6 +270,8 @@ html[data-theme=light] #contact a.pin{color:#fff!important}
   .view1{flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:10px 12px}
   .pw{display:contents}
   .view1 .nm{flex:0 0 calc(100% - clamp(96px,29vw,140px) - 12px);min-width:0}
+  #mod{display:none}
+  .view1 .modm{display:flex;flex:0 0 100%;justify-content:center;margin:2px 0 0;font-size:clamp(11.5px,3.3vw,15px);padding:.4em .8em}
   .view1 .lk{flex:1 1 calc(50% - 6px);height:44px;min-width:0;width:auto;font-size:clamp(11.5px,3.2vw,15px);padding:.55em .7em}
   .ph{width:clamp(96px,29vw,140px);flex:none;margin-top:0}
   #side{padding-top:2px!important}
@@ -346,10 +350,10 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 @keyframes hp{50%{box-shadow:0 6px 30px rgba(0,0,0,.4),0 0 0 8px rgba(var(--bgrgb),0),0 0 22px var(--yl)}}
 #hint small{display:block;margin-top:.35em;font-size:.72em;font-weight:400;color:var(--atx)}
 #hint.off{opacity:0}
-#bub{position:fixed;z-index:20;left:0;top:0;max-width:min(320px,calc(100vw - 36px));color:var(--yl);--bbg:#171513;font-size:clamp(13px,1.05vw,17px);line-height:1.4;font-weight:400;
+#bub{position:fixed;z-index:20;left:0;top:0;max-width:min(320px,calc(100vw - 36px));color:var(--yl);--bbg:var(--card);--bbo:#171513;font-size:clamp(13px,1.05vw,17px);line-height:1.4;font-weight:400;
   pointer-events:none;opacity:0;transform:scale(.4);transform-origin:var(--tx,30px) 100%;visibility:hidden;
-  filter:drop-shadow(1px 0 0 #86538C) drop-shadow(-1px 0 0 #86538C) drop-shadow(0 1px 0 #86538C) drop-shadow(0 -1px 0 #86538C) drop-shadow(0 8px 16px rgba(0,0,0,.4))}
-#bub .cl{position:relative;background:var(--bbg);border-radius:44px;padding:16px 26px}
+  }
+#bub .cl{position:relative;background:var(--bbg);border:1.5px solid #86538C;border-radius:44px;padding:15px 25px}
 #bub .cb{display:none!important;position:absolute;background:var(--bbg);border-radius:50%;width:38px;height:38px}
 #bub .c1{left:9%;top:-12px;width:44px;height:44px}#bub .c2{left:32%;top:-17px;width:52px;height:52px}#bub .c3{left:58%;top:-15px;width:48px;height:48px}#bub .c4{right:9%;top:-11px;width:42px;height:42px}
 #bub .c5{right:-9px;top:26%;width:44px;height:44px}#bub .c6{left:-9px;top:30%;width:42px;height:42px}
@@ -358,7 +362,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #bub #bubl{position:relative;display:block;margin-top:.45em;color:var(--atx);font-weight:400;text-decoration:underline;text-underline-offset:3px;pointer-events:none;cursor:pointer;opacity:0;transition:opacity .5s}
 #bub.done #bubl{opacity:1}
 #bub.ready #bubl{pointer-events:auto}
-#bub .tl{position:absolute;background:var(--bbg);border-radius:50%}
+#bub .tl{position:absolute;background:var(--bbg);border:1.5px solid #86538C;border-radius:50%;box-sizing:border-box}
 #bub .t1{left:calc(var(--tx,30px) - 11px);bottom:-24px;width:18px;height:18px}
 #bub .t2{left:calc(var(--tx,30px) - 5px);bottom:-36px;width:12px;height:12px}
 #bub .t3{left:calc(var(--tx,30px) - 1px);bottom:-45px;width:8px;height:8px}
@@ -375,11 +379,11 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #toast{position:absolute;left:50%;top:14px;transform:translateX(-50%);padding:6px 12px;border-radius:8px;
   background:rgba(var(--bgrgb),.85);border:1px solid var(--line);font-size:13px;letter-spacing:.04em;opacity:0;transition:opacity .25s;pointer-events:none}
 #toast.on{opacity:1}
-#bub #bubx{position:absolute;top:-9px;right:-9px;width:28px;height:28px;border-radius:50%;border:1px solid #86538C;background:var(--bbg);color:var(--yl);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;pointer-events:none;opacity:0;transition:opacity .4s;z-index:2}
+#bub #bubx{position:absolute;top:-9px;right:-9px;width:28px;height:28px;border-radius:50%;border:1.5px solid #86538C;background:var(--bbo);color:var(--yl);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;pointer-events:none;opacity:0;transition:opacity .4s;z-index:2}
 #bub.done #bubx,#bub.on #bubx{opacity:1}
 #bub.on #bubx{pointer-events:auto}
 #bub #bubx:hover{background:var(--yl);color:var(--bg)}
-html[data-theme=light] #bub{--bbg:#f6f3ea}
+html[data-theme=light] #bub{--bbo:#f6f3ea}
 @media(min-width:1000px) and (max-width:1199px){#handle{font-size:clamp(20px,1.95vw,50px)}}
 </style>
 </head>
@@ -397,6 +401,7 @@ html[data-theme=light] #bub{--bbg:#f6f3ea}
         <div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div>
         <div class="pw">
           <div class="nm"></div>
+          <div class="modm"></div>
           <button class="lk" type="button" data-sob="0">Sobre mim <i>›</i></button>
           <button class="lk" type="button" data-sob="1">Sobre a terapia <i>›</i></button>
         </div>
@@ -540,7 +545,7 @@ function qrSVG(url,fill,defs){var m=qrMatrix(url),n=m.length,q=4,N=n+2*q,d='',x,
   htm('.nm','<b><span class="n1">'+P.nomeLinha1+'</span> <span class="n2">'+P.nomeLinha2+'</span></b>'+P.profissao+' · <span style="white-space:nowrap">'+P.crp+'</span><span class="tcc">'+P.especialidade+'</span>');
   all('.ph img').forEach(function(e){e.alt=P.nome;});
   txt('#sm b',P.nome);txt('.fn',P.nome);txt('#handle',P.nome);txt('#tg .h',P.arroba);
-  txt('#tg .r',P.cargo);txt('#role',P.cargo);txt('#tag',C.apresentacao.frase);txt('#mod',C.apresentacao.modalidade);
+  txt('#tg .r',P.cargo);txt('#role',P.cargo);txt('#tag',C.apresentacao.frase);txt('#mod',C.apresentacao.modalidade);txt('.modm',C.apresentacao.modalidade);txt('.modm',C.apresentacao.modalidade);
   txt('#sm .open',B.sobreMimAbrir);txt('#sm .close',B.sobreMimFechar);
   txt('#tg .open',B.detalhesAbrir);txt('#tg .close',B.detalhesFechar);
   htm('.lk[data-sob="0"]',B.sobreMim+' <i>›</i>');htm('.lk[data-sob="1"]',B.sobreTerapia+' <i>›</i>');
@@ -586,7 +591,7 @@ var salaImg=null,cells=null,art=null;
 var vw=0,vh=0,dpr=1,aw=0,ah=0,ax=0,ay=0,cellW=0,cellH=0;
 
 function layout(){
-  vw=window.innerWidth;vh=window.innerHeight;dpr=Math.min(window.devicePixelRatio||1,2,Math.max(1,Math.sqrt(4.2e6/(vw*vh))));
+  vw=window.innerWidth;vh=window.innerHeight;dpr=Math.min(window.devicePixelRatio||1,vw<1000?1.5:2,Math.max(1,Math.sqrt(4.2e6/(vw*vh))));
   cv.width=Math.round(vw*dpr);cv.height=Math.round(vh*dpr);
   aw=Math.min(vw,vh*.99);ah=aw*ASPECT;ax=(vw-aw)/2;ay=(vh-ah)*.5-(vw<1000?vh*.1:0);
 }
@@ -788,16 +793,22 @@ function audioStart(){
   sched();tmr=setInterval(sched,600);
   outG.gain.setValueAtTime(0,AC.currentTime);outG.gain.linearRampToValueAtTime(muted?0:LEVEL,AC.currentTime+.8);
 }
-function resumeAC(){try{if(AC&&AC.state!=='running')AC.resume();}catch(e){}}
+function resumeAC(){try{if(AC&&AC.state!=='running'&&!document.hidden)AC.resume();}catch(e){}}
 var gesture=false;
 function syncUI(){var o=muted||!audioOn;$('snd').classList.toggle('off',o);$('snd2').classList.toggle('off',o);
   $('hint').classList.toggle('off',!!(gesture&&AC&&AC.state==='running'));}
 setInterval(syncUI,400);
 function setMute(m){muted=m;if(AC&&audioOn){outG.gain.cancelScheduledValues(AC.currentTime);
   outG.gain.setValueAtTime(outG.gain.value,AC.currentTime);outG.gain.linearRampToValueAtTime(muted?0:LEVEL,AC.currentTime+.6);}}
-document.addEventListener('visibilitychange',function(){
-  if(!AC)return;try{if(document.hidden)AC.suspend();else AC.resume();}catch(e){}
-});
+/* sai do navegador / troca de app / bloqueia a tela -> para o som */
+function pauseAudio(){try{if(AC&&AC.state==='running')AC.suspend();}catch(e){}}
+function wakeAudio(){try{if(AC&&audioOn&&!document.hidden&&AC.state!=='running')AC.resume();}catch(e){}}
+document.addEventListener('visibilitychange',function(){if(document.hidden)pauseAudio();else wakeAudio();});
+window.addEventListener('pagehide',pauseAudio);
+window.addEventListener('pageshow',wakeAudio);
+document.addEventListener('freeze',pauseAudio);
+window.addEventListener('blur',function(){setTimeout(function(){if(document.hidden)pauseAudio();},60);});
+setInterval(function(){if(document.hidden)pauseAudio();},1000);   /* garantia extra */
 
 /* ------------------------------------------------------------------ */
 /*  interação: toque = som (1ª vez) / dia-noite; segurar = mudo        */
@@ -927,7 +938,7 @@ var lastDraw=0;
 function frame(now){
   requestAnimationFrame(frame);
   if(document.hidden)return;                       /* aba oculta: não desenha */
-  var gap=(vw>=2300)?42:33;                        /* ~20 fps em telas muito grandes (4K), ~30 fps nas demais */
+  var gap=(vw>=2300||vw<1000)?42:33;                        /* ~20 fps em celular e telas muito grandes, ~30 fps nas demais */
   if(now-lastDraw<gap)return;lastDraw=now;
   draw(now);tickClock();if(!frame.p||now-frame.p>500){frame.p=now;placeClk();}}
 document.documentElement.setAttribute('data-theme',TH);
