@@ -138,8 +138,8 @@ var CONFIG={
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#86538C">
-<meta name="msapplication-navbutton-color" content="#86538C">
+<meta name="theme-color" content="#121110">
+<meta name="msapplication-navbutton-color" content="#121110">
 <title></title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cg%20fill%3D%22%2386538C%22%3E%3Cellipse%20cx%3D%228.6%22%20cy%3D%226.4%22%20rx%3D%222.4%22%20ry%3D%225.6%22%20transform%3D%22rotate%28-8%208.6%206.4%29%22%2F%3E%3Cellipse%20cx%3D%2215.4%22%20cy%3D%226.4%22%20rx%3D%222.4%22%20ry%3D%225.6%22%20transform%3D%22rotate%288%2015.4%206.4%29%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2215.6%22%20r%3D%227%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23fff%22%3E%3Ccircle%20cx%3D%229.4%22%20cy%3D%2214.8%22%20r%3D%221.1%22%2F%3E%3Ccircle%20cx%3D%2214.6%22%20cy%3D%2214.8%22%20r%3D%221.1%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 
@@ -364,10 +364,10 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #snd:active,#snd2:active,#thm:active,#thm2:active{transform:scale(.94)}
 #hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:14px 24px;border-radius:99px;max-width:88vw;text-align:center;
   background:rgba(var(--bgrgb),.82);border:1px solid var(--yl);color:var(--yl);font-size:clamp(15px,2vw,24px);font-weight:700;letter-spacing:.03em;
-  box-shadow:0 6px 30px rgba(0,0,0,.4);pointer-events:none;transition:opacity .5s;animation:hp 2s ease-in-out infinite}
+  box-shadow:0 6px 30px rgba(0,0,0,.4);pointer-events:auto;cursor:pointer;transition:opacity .5s;animation:hp 2s ease-in-out infinite}
 @keyframes hp{50%{box-shadow:0 6px 30px rgba(0,0,0,.4),0 0 0 8px rgba(var(--bgrgb),0),0 0 22px var(--yl)}}
 #hint small{display:block;margin-top:.35em;font-size:.72em;font-weight:400;color:var(--atx)}
-#hint.off{opacity:0}
+#hint.off{opacity:0;pointer-events:none}
 #bub{position:fixed;z-index:20;left:0;top:0;max-width:min(320px,calc(100vw - 36px));color:var(--yl);--bbg:var(--card);--bbo:#171513;font-size:clamp(13px,1.05vw,17px);line-height:1.4;font-weight:400;
   pointer-events:none;opacity:0;transform:scale(.4);transform-origin:var(--tx,30px) 100%;visibility:hidden;
   }
@@ -499,7 +499,7 @@ html.eco #bub.on{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) forwards}
     </div>
     </div>
   </div>
-  <div id="hint">Respire fundo.<br><small>Toque para começar a ouvir algo relaxante</small></div>
+  <div id="hint" role="button" tabindex="0">Respire fundo.<br><small>Toque para começar a ouvir algo relaxante</small></div>
   <div id="bub" role="status" aria-live="polite"><div class="cl"><i class="cb c1"></i><i class="cb c2"></i><i class="cb c3"></i><i class="cb c4"></i><i class="cb c5"></i><i class="cb c6"></i><i class="cb c7"></i><i class="cb c8"></i><i class="cb c9"></i><i class="cb c10"></i><button id="bubx" type="button" aria-label="Fechar"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button><span id="bubt"></span><a id="bubl" data-link="whatsapp" href="#" target="_blank" rel="noopener">Agende seu atendimento pelo WhatsApp</a></div><i class="tl t1"></i><i class="tl t2"></i><i class="tl t3"></i></div>
   <button id="eco" type="button"><svg class="ps" viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="1.5" width="2.8" height="9" rx=".8"/><rect x="7.2" y="1.5" width="2.8" height="9" rx=".8"/></svg><svg class="pl" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7.5-4.5z"/></svg></button>
   <div id="toast"></div>
@@ -856,8 +856,10 @@ function setEco(on,save){ECO=on;lastDraw=0;document.documentElement.classList.to
 $('eco').addEventListener('click',function(e){e.stopPropagation();setEco(!ECO,true);});
 setEco(ECO,false);
 function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){e.classList.remove('on');},1300);}
+function barColor(t){var c=t==='light'?'#86538C':'#121110';   /* cor da barra do navegador: preta (noite) / roxa (dia) */
+  document.querySelectorAll('meta[name=theme-color],meta[name=msapplication-navbutton-color]').forEach(function(m){m.setAttribute('content',c);});}
 function setTheme(t,save){
-  TH=t;document.documentElement.setAttribute('data-theme',t);
+  TH=t;document.documentElement.setAttribute('data-theme',t);barColor(t);
   if(save){try{localStorage.setItem('sala-tema',t);}catch(e){}}
   buildArt();buildFace();
 }
@@ -874,8 +876,10 @@ $('tg').addEventListener('click',function(e){e.stopPropagation();hideBubble();va
   $('tg').setAttribute('aria-expanded',o);});
 function toggleFull(){try{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen();}catch(e){}}
 var lp=0,lpDone=false,ptrOnLink=false;
+function onHint(e){return !!(e.target&&e.target.closest&&e.target.closest('#hint'));}
 $('app').addEventListener('pointerdown',function(e){
   ptrOnLink=!!(e.target.closest&&e.target.closest('a,button,#side,#card'));
+  if(!gesture&&!onHint(e))return;                   /* antes de começar: só o botão "Respire fundo" liga o som */
   if(!gesture){gesture=true;audioStart();resumeAC();syncUI();lpDone=true;showBubble();return;}
   if(!audioOn){audioStart();lpDone=true;return;}
   if(AC&&AC.state!=='running'){resumeAC();lpDone=true;return;}
@@ -886,6 +890,7 @@ $('app').addEventListener('pointerup',function(){clearTimeout(lp);lpDone=false;}
 $('app').addEventListener('pointercancel',function(){clearTimeout(lp);});
 window.addEventListener('keydown',function(e){
   var k=e.code;
+  if(!gesture){if((k==='Enter'||k==='Space')&&onHint(e)){e.preventDefault();gesture=true;audioStart();resumeAC();syncUI();showBubble();}return;}
   if(!audioOn||(AC&&AC.state!=='running')){audioStart();resumeAC();return;}
   if(k==='KeyM')toggleMute();else if(k==='KeyF')toggleFull();
 });
@@ -1045,7 +1050,7 @@ function frame(now){
   var gap=ECO?1000:((vw>=2300||vw<1000)?42:33);                        /* ~20 fps em celular e telas muito grandes, ~30 fps nas demais */
   if(now-lastDraw<gap)return;lastDraw=now;
   draw(now);tickClock();if(!frame.p||now-frame.p>500){frame.p=now;placeClk();}}
-document.documentElement.setAttribute('data-theme',TH);
+document.documentElement.setAttribute('data-theme',TH);barColor(TH);
 layout();initDust();initSpark();tickClock();
 buildArt();
 /* se existir sala.jpg na mesma pasta, usa ela (modo IMAGEM por padrão) */
@@ -1059,9 +1064,9 @@ salaTry.src=CONFIG.imagens.sala;
 $('mt').addEventListener('click',function(e){e.stopPropagation();userMode=true;setMode(MODE==='img'?'ascii':'img');});
 requestAnimationFrame(frame);
 audioStart();
-/* o navegador só libera o som após um gesto: qualquer toque, clique, tecla ou rolagem liga na hora */
-(function(){var evs=['pointerup','touchend','click','keydown','wheel','mouseup'];
-  function go(){gesture=true;audioStart();resumeAC();syncUI();showBubble();
+/* o navegador só libera o som após um gesto: o toque/clique no botão "Respire fundo" liga na hora */
+(function(){var evs=['pointerup','touchend','click','mouseup'];
+  function go(e){if(!onHint(e))return;gesture=true;audioStart();resumeAC();syncUI();showBubble();
     if(AC&&AC.state==='running')evs.forEach(function(e){window.removeEventListener(e,go,true);});}
   evs.forEach(function(e){window.addEventListener(e,go,true);});
   if(AC)AC.onstatechange=function(){syncUI();};})();
