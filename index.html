@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>@isaggalvan · Psicoterapia</title>
 <style>
-:root{--bg:#121110;--bgrgb:18,17,16;--ink:#f1eee2;--muted:#b9b3a3;--accent:#e2b565;--card:rgba(24,22,19,.62);--line:rgba(241,238,226,.14)}
-html[data-theme=light]{--bg:#ece8dc;--bgrgb:236,232,220;--ink:#2a2420;--muted:#5d554a;--accent:#9a6416;--card:rgba(250,247,238,.72);--line:rgba(42,36,32,.16)}
+:root{--ig:#b894ff;--wa:#3ddc84;--bg:#121110;--bgrgb:18,17,16;--ink:#f1eee2;--muted:#b9b3a3;--accent:#e2b565;--card:rgba(24,22,19,.62);--line:rgba(241,238,226,.14)}
+html[data-theme=light]{--ig:#6a2fd0;--wa:#12843f;--bg:#ece8dc;--bgrgb:236,232,220;--ink:#2a2420;--muted:#5d554a;--accent:#9a6416;--card:rgba(250,247,238,.72);--line:rgba(42,36,32,.16)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);overflow:hidden;
@@ -20,6 +20,12 @@ body.idle{cursor:none}
 #gb{bottom:0;height:46%;background:linear-gradient(rgba(var(--bgrgb),0),rgba(var(--bgrgb),.6) 40%,rgba(var(--bgrgb),.94))}
 #top{position:absolute;left:0;right:0;top:clamp(26px,8vh,110px);text-align:center;pointer-events:none;
   --fs:clamp(40px,min(14vw,13vh),150px);text-shadow:0 0 10px var(--bg),0 0 22px var(--bg),0 2px 0 rgba(0,0,0,.25)}
+#hmsw{position:relative;display:inline-block}
+.mt{position:absolute;left:100%;top:.15em;margin-left:clamp(8px,1vw,18px);display:flex;align-items:center;gap:.5em;font:inherit;font-size:clamp(10px,.75vw,13px);
+  letter-spacing:.14em;color:var(--muted);background:none;border:0;padding:6px 4px;cursor:pointer;opacity:.65;pointer-events:auto;text-shadow:none;white-space:nowrap;transition:opacity .2s}
+.mt:hover{opacity:1}.mt i{font-style:normal;opacity:.5}.mt span{opacity:.55}
+.mt[data-m=img] span[data-m=img],.mt[data-m=ascii] span[data-m=ascii]{opacity:1;color:var(--ink);font-weight:700}
+@media(max-width:999px){.mt{position:fixed;left:auto;top:12px;right:12px;margin:0;font-size:11px}}
 #hms{font-size:var(--fs);line-height:1;font-weight:600;letter-spacing:.02em;font-variant-numeric:tabular-nums}
 #hms i{font-style:normal;animation:pisca 1s steps(1) infinite}
 #hms b{font-weight:600;color:var(--accent)}
@@ -44,7 +50,8 @@ body.idle{cursor:none}
 .qr{flex:none;display:flex;flex-direction:column;align-items:center;gap:7px;width:clamp(84px,15vw,170px);color:var(--ink);text-decoration:none}
 #qrs .qb{position:relative;width:100%}
 #qrs svg{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.35)}
-#qrs span{font-size:clamp(9.5px,1.7vw,12px);letter-spacing:.04em;text-align:center;line-height:1.35;color:var(--muted)}
+#qrs a.qr:nth-of-type(1) span{color:var(--ig)}#qrs a.qr:nth-of-type(2) span{color:var(--wa)}
+#qrs span{font-weight:700;font-size:clamp(9.5px,1.7vw,12px);letter-spacing:.04em;text-align:center;line-height:1.35;color:var(--muted)}
 
 #bot{align-items:flex-end;gap:clamp(12px,1.6vw,24px)}
 #card{flex:1 1 auto;min-width:0}
@@ -164,7 +171,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 <div id="app">
   <canvas id="cv" aria-label="Desenho em ASCII de uma sala de atendimento"></canvas>
   <div class="fade" id="gt"></div><div class="fade" id="gb"></div>
-  <div id="top" aria-label="Hora e data"><div id="hms"></div><div id="wd"></div><div id="dt"></div></div>
+  <div id="top" aria-label="Hora e data"><div id="hmsw"><div id="hms"></div><button id="mt" class="mt" data-m="ascii" type="button" aria-label="Alternar entre imagem e ASCII"><span data-m="img">IMAGEM</span><i>|</i><span data-m="ascii">ASCII</span></button></div><div id="wd"></div><div id="dt"></div></div>
   <div id="bot">
     <button id="sm" type="button" aria-expanded="false"><b>Isadora G. Galvan</b><span><i class="open">Sobre mim ▲</i><i class="close">▼</i></span></button>
     <div id="side">
@@ -284,7 +291,7 @@ var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').match
 /*  desenho em ASCII a partir da foto                                  */
 /* ------------------------------------------------------------------ */
 var SETS=[" ",".'`",":;,","-~=","+i!l","xzvo","*Oe0","#%&8","@MW$"];
-var img=new Image(),cells=null,art=null;
+var img=new Image(),salaImg=null,cells=null,art=null;
 var vw=0,vh=0,dpr=1,aw=0,ah=0,ax=0,ay=0,cellW=0,cellH=0;
 
 function layout(){
@@ -297,8 +304,10 @@ function buildCells(){
   var cols=clamp(Math.round(aw/3.3),120,250);
   cellW=aw/cols;cellH=cellW*1.8;var rows=Math.max(10,Math.round(ah/cellH));cellH=ah/rows;
   var t=document.createElement('canvas');t.width=cols;t.height=rows;var g=t.getContext('2d');
-  g.imageSmoothingEnabled=true;g.imageSmoothingQuality='high';g.drawImage(img,0,0,cols,rows);
-  cells={cols:cols,rows:rows,d:g.getImageData(0,0,cols,rows).data};
+  g.imageSmoothingEnabled=true;g.imageSmoothingQuality='high';
+  var dd;try{g.drawImage(salaImg||img,0,0,cols,rows);dd=g.getImageData(0,0,cols,rows).data;}
+  catch(e){var t2=document.createElement('canvas');t2.width=cols;t2.height=rows;var g2=t2.getContext('2d');g2.imageSmoothingQuality='high';g2.drawImage(img,0,0,cols,rows);dd=g2.getImageData(0,0,cols,rows).data;}
+  cells={cols:cols,rows:rows,d:dd};
 }
 function buildArt(){
   if(!img.complete||!img.naturalWidth)return;
@@ -331,7 +340,19 @@ function buildArt(){
   gy.addColorStop(0,'rgba(0,0,0,0)');gy.addColorStop(.06,'rgba(0,0,0,1)');gy.addColorStop(.94,'rgba(0,0,0,1)');gy.addColorStop(1,'rgba(0,0,0,0)');
   g.fillStyle=gy;g.fillRect(0,0,W,H);
   art=c;
+  buildImgArt();
 }
+var artImg=null,MODE='ascii',glowsOK=true,ASPECT0=ASPECT;
+function buildImgArt(){
+  var c=document.createElement('canvas');c.width=Math.ceil(aw*dpr);c.height=Math.ceil(ah*dpr);var g=c.getContext('2d');
+  g.imageSmoothingQuality='high';g.drawImage(salaImg||img,0,0,c.width,c.height);
+  g.globalCompositeOperation='destination-in';var W=c.width,H=c.height;
+  var gx=g.createLinearGradient(0,0,W,0);gx.addColorStop(0,'rgba(0,0,0,0)');gx.addColorStop(.09,'rgba(0,0,0,1)');gx.addColorStop(.91,'rgba(0,0,0,1)');gx.addColorStop(1,'rgba(0,0,0,0)');
+  g.fillStyle=gx;g.fillRect(0,0,W,H);
+  var gy=g.createLinearGradient(0,0,0,H);gy.addColorStop(0,'rgba(0,0,0,0)');gy.addColorStop(.06,'rgba(0,0,0,1)');gy.addColorStop(.94,'rgba(0,0,0,1)');gy.addColorStop(1,'rgba(0,0,0,0)');
+  g.fillStyle=gy;g.fillRect(0,0,W,H);artImg=c;
+}
+function setMode(m){MODE=m;$('mt').setAttribute('data-m',m);document.querySelectorAll('.ph').forEach(function(ph){ph.classList.toggle('ascii',m==='ascii');});if(typeof buildFace==='function')buildFace();}
 
 /* ------------------------------------------------------------------ */
 /*  animação: respiração da câmera, luzes, brilho no quadro, poeira    */
@@ -366,7 +387,8 @@ function draw(now){
   if(!art)return;
   var s=reduce?1:1+.011*(.5+.5*Math.sin(t*.06)),tx=reduce?0:Math.sin(t*.037)*aw*.005,ty=reduce?0:Math.cos(t*.029)*ah*.003;
   ctx.save();ctx.translate(ax+aw/2+tx,ay+ah/2+ty);ctx.scale(s,s);
-  ctx.drawImage(art,-aw/2,-ah/2,aw,ah);
+  ctx.drawImage((MODE==='img'&&artImg)?artImg:art,-aw/2,-ah/2,aw,ah);
+  if(!glowsOK&&MODE==='img'){ctx.restore();return;}
   var X=function(x){return x*aw-aw/2;},Y=function(y){return y*ah-ah/2;};
   ctx.globalCompositeOperation=dark?'lighter':'source-over';
   /* spots do teto */
@@ -554,7 +576,11 @@ function drawFace(phEl){
     g.fillText(chh,(c+.5)*cw,(r+.54)*ch);
   }
 }
-phs.forEach(function(ph){var im=ph.querySelector('img');im.onerror=function(){ph.classList.add('ascii');buildFace();};im.onload=function(){ph.classList.remove('ascii');};im.src='isaggalvan.jpeg';});
+/* foto de perfil: usa a embutida; se isaggalvan.jpeg existir na pasta, troca por ela. O botão IMAGEM|ASCII alterna foto <-> ASCII */
+var userMode=false;
+phs.forEach(function(ph){ph.classList.add('ascii');ph.querySelector('img').src=FACE;});
+var fp=new Image();fp.onload=function(){phs.forEach(function(ph){ph.querySelector('img').src='isaggalvan.jpeg';});if(!userMode)setMode('img');};
+fp.src='isaggalvan.jpeg';
 /* painéis "Sobre" */
 var sideEl=$('side'),secs=document.querySelectorAll('#sobb .sec');
 function openSob(i){
@@ -574,6 +600,15 @@ document.documentElement.setAttribute('data-theme',TH);
 layout();initDust();initSpark();tickClock();
 img.onload=function(){buildArt();};
 img.src=PHOTO;
+/* se existir sala.jpg na mesma pasta, usa ela (modo IMAGEM por padrão) */
+var salaTry=new Image();
+salaTry.onload=function(){
+  if(!salaTry.naturalWidth)return;
+  salaImg=salaTry;ASPECT=salaTry.naturalHeight/salaTry.naturalWidth;glowsOK=Math.abs(ASPECT-ASPECT0)<.03;
+  rebuild();if(!userMode)setMode('img');
+};
+salaTry.src='sala.jpg';
+$('mt').addEventListener('click',function(e){e.stopPropagation();userMode=true;setMode(MODE==='img'?'ascii':'img');});
 requestAnimationFrame(frame);
 audioStart();
 /* o navegador só libera o som após um gesto: qualquer toque, clique, tecla ou rolagem liga na hora */
