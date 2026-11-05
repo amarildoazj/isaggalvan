@@ -159,7 +159,8 @@ body.idle{cursor:none}
   #tg .h,#tg .r{display:none}
   #tg .m{font-size:clamp(15px,4.4vw,19px);font-weight:700;letter-spacing:.02em}
   .fn{display:none}
-  .view1 .nm b{display:block;font-size:clamp(19px,5.6vw,24px);line-height:1.15;margin-bottom:6px;letter-spacing:.01em}
+  .view1 .nm b{display:block;font-size:clamp(14px,4.9vw,21px);line-height:1.2;margin-bottom:6px;letter-spacing:0}
+  .view1 .nm b .n1{white-space:nowrap}.view1 .nm b .n2{display:block}
   .tcc{display:block}
   #tg i{font-style:normal}#tg .close{display:none}#card.open #tg .close{display:inline}#card.open #tg .open{display:none}
   #qrs .ctrls{display:none!important}
@@ -216,12 +217,14 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #bub{position:fixed;z-index:20;left:0;top:0;max-width:min(320px,calc(100vw - 36px));color:#9a6416;font-size:clamp(13px,1.05vw,17px);line-height:1.4;font-weight:400;
   pointer-events:none;opacity:0;transform:scale(.4);transform-origin:var(--tx,30px) 100%;visibility:hidden;
   filter:drop-shadow(1px 0 0 #86538C) drop-shadow(-1px 0 0 #86538C) drop-shadow(0 1px 0 #86538C) drop-shadow(0 -1px 0 #86538C) drop-shadow(0 8px 16px rgba(0,0,0,.4))}
-#bub .cl{position:relative;background:#fff;border-radius:999px;padding:13px 24px}
+#bub .cl{position:relative;background:#fff;border-radius:44px;padding:16px 26px}
 #bub .cb{display:none!important;position:absolute;background:#fff;border-radius:50%;width:38px;height:38px}
 #bub .c1{left:9%;top:-12px;width:44px;height:44px}#bub .c2{left:32%;top:-17px;width:52px;height:52px}#bub .c3{left:58%;top:-15px;width:48px;height:48px}#bub .c4{right:9%;top:-11px;width:42px;height:42px}
 #bub .c5{right:-9px;top:26%;width:44px;height:44px}#bub .c6{left:-9px;top:30%;width:42px;height:42px}
 #bub .c7{left:10%;bottom:-12px;width:42px;height:42px}#bub .c8{left:36%;bottom:-15px;width:48px;height:48px}#bub .c9{left:62%;bottom:-13px;width:44px;height:44px}#bub .c10{right:8%;bottom:-11px;width:40px;height:40px}
 #bub #bubt{position:relative;display:block}
+#bub #bubl{position:relative;display:block;margin-top:.45em;color:#86538C;font-weight:400;text-decoration:underline;text-underline-offset:3px;pointer-events:auto;cursor:pointer;opacity:0;transition:opacity .5s}
+#bub.done #bubl{opacity:1}
 #bub .tl{position:absolute;background:#fff;border-radius:50%}
 #bub .t1{left:calc(var(--tx,30px) - 11px);bottom:-24px;width:18px;height:18px}
 #bub .t2{left:calc(var(--tx,30px) - 5px);bottom:-36px;width:12px;height:12px}
@@ -254,7 +257,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
       <div class="view1">
         <div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div>
         <div class="pw">
-          <div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div>
+          <div class="nm"><b><span class="n1">Isadora Gagliotto</span> <span class="n2">Galvan</span></b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div>
           <button class="lk" type="button" data-sob="0">Sobre mim <i>›</i></button>
           <button class="lk" type="button" data-sob="1">Sobre a terapia <i>›</i></button>
         </div>
@@ -263,7 +266,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <div id="sobh"><button id="back" type="button">← Voltar</button><div id="sobt"></div></div>
         <div id="sobb">
           <div class="sec" data-t="Sobre mim e meu trabalho" hidden>
-            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div></div>
+            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b><span class="n1">Isadora Gagliotto</span> <span class="n2">Galvan</span></b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div></div>
             <p>Eu sou a Isa, Psicóloga Clínica (CRP 08/37885), sou formada em Psicologia, pós graduada em Terapia Cognitivo-Comportamental e Neuropsicopedagogia.</p>
             <p>Atuo na área de saúde pública e clínica.</p>
             <p>Estar disposto(a) para iniciar a psicoterapia requer coragem para a encarar a si mesmo, comprometimento e responsabilidade com o seu processo.</p>
@@ -271,7 +274,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
             <p>Podem ser realizados de forma presencial e on-line!<br>E fique tranquilo(a), atendimentos on-line apresentam a mesma eficácia de atendimentos presenciais.</p>
           </div>
           <div class="sec" data-t="Sobre a Terapia Cognitivo-Comportamental" hidden>
-            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div></div>
+            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b><span class="n1">Isadora Gagliotto</span> <span class="n2">Galvan</span></b>Psicóloga Clínica · <span style="white-space:nowrap">CRP 08/37885</span><span class="tcc">Especialista em TCC</span></div></div>
             <h4>Sobre Terapias Cognitivo-Comportamentais...</h4>
             <blockquote>“As reações das pessoas passam a fazer sentido depois que sabemos o que elas estavam pensando. Não é a situação em si que determina o que as pessoas sentem ou fazem, mas como elas interpretam (pensam sobre) uma situação.”</blockquote>
             <cite>— J. Beck</cite>
@@ -302,7 +305,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <button id="tg" type="button" aria-expanded="false" aria-controls="card">
           <b class="h">@isaggalvan</b>
           <span class="r">Psicóloga &amp; Especialista em TCC</span>
-          <span class="m"><i class="open">+ informações ▲</i><i class="close">+ informações ▼</i></span>
+          <span class="m"><i class="open">+ detalhes ▲</i><i class="close">+ detalhes ▼</i></span>
         </button>
         <div class="ctrls">
         <a class="soc ig" href="https://www.instagram.com/isaggalvan/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb">IG</span><img alt="" data-src="instagram.png"></a>
@@ -338,7 +341,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
       </a>
       <a class="qr" href="https://wa.me/5546988009738" target="_blank" rel="noopener" aria-label="QR code para o WhatsApp">
         <div class="qb"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code"><rect width="41" height="41" fill="#fff"/><path fill="#1a9a54" d="M6 6h7v1h-7zM14 6h1v1h-1zM16 6h3v1h-3zM21 6h2v1h-2zM25 6h1v1h-1zM28 6h7v1h-7zM6 7h1v1h-1zM12 7h1v1h-1zM14 7h1v1h-1zM17 7h2v1h-2zM20 7h2v1h-2zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM6 8h1v1h-1zM8 8h3v1h-3zM12 8h1v1h-1zM15 8h2v1h-2zM18 8h4v1h-4zM25 8h1v1h-1zM28 8h1v1h-1zM30 8h3v1h-3zM34 8h1v1h-1zM6 9h1v1h-1zM8 9h3v1h-3zM12 9h1v1h-1zM14 9h2v1h-2zM17 9h2v1h-2zM22 9h3v1h-3zM26 9h1v1h-1zM28 9h1v1h-1zM30 9h3v1h-3zM34 9h1v1h-1zM6 10h1v1h-1zM8 10h3v1h-3zM12 10h1v1h-1zM15 10h2v1h-2zM18 10h2v1h-2zM24 10h3v1h-3zM28 10h1v1h-1zM30 10h3v1h-3zM34 10h1v1h-1zM6 11h1v1h-1zM12 11h1v1h-1zM17 11h2v1h-2zM20 11h1v1h-1zM25 11h1v1h-1zM28 11h1v1h-1zM34 11h1v1h-1zM6 12h7v1h-7zM14 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM26 12h1v1h-1zM28 12h7v1h-7zM14 13h1v1h-1zM16 13h2v1h-2zM19 13h2v1h-2zM23 13h2v1h-2zM26 13h1v1h-1zM6 14h1v1h-1zM8 14h2v1h-2zM11 14h3v1h-3zM19 14h2v1h-2zM22 14h2v1h-2zM26 14h1v1h-1zM28 14h1v1h-1zM31 14h1v1h-1zM33 14h2v1h-2zM6 15h1v1h-1zM8 15h3v1h-3zM14 15h3v1h-3zM18 15h1v1h-1zM21 15h2v1h-2zM25 15h1v1h-1zM27 15h4v1h-4zM34 15h1v1h-1zM8 16h2v1h-2zM12 16h2v1h-2zM16 16h1v1h-1zM20 16h2v1h-2zM24 16h1v1h-1zM26 16h2v1h-2zM32 16h2v1h-2zM6 17h1v1h-1zM9 17h3v1h-3zM13 17h2v1h-2zM16 17h2v1h-2zM19 17h3v1h-3zM24 17h2v1h-2zM27 17h4v1h-4zM34 17h1v1h-1zM6 18h2v1h-2zM9 18h1v1h-1zM11 18h2v1h-2zM14 18h2v1h-2zM17 18h2v1h-2zM22 18h6v1h-6zM31 18h2v1h-2zM6 19h3v1h-3zM10 19h2v1h-2zM13 19h1v1h-1zM15 19h1v1h-1zM18 19h2v1h-2zM23 19h4v1h-4zM28 19h1v1h-1zM32 19h3v1h-3zM6 20h2v1h-2zM10 20h3v1h-3zM15 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM23 20h1v1h-1zM25 20h3v1h-3zM30 20h1v1h-1zM32 20h3v1h-3zM6 21h5v1h-5zM18 21h2v1h-2zM21 21h1v1h-1zM28 21h2v1h-2zM33 21h1v1h-1zM7 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM16 22h1v1h-1zM18 22h1v1h-1zM25 22h1v1h-1zM29 22h3v1h-3zM33 22h1v1h-1zM7 23h2v1h-2zM10 23h1v1h-1zM15 23h2v1h-2zM18 23h2v1h-2zM23 23h2v1h-2zM27 23h1v1h-1zM31 23h3v1h-3zM6 24h1v1h-1zM10 24h5v1h-5zM16 24h3v1h-3zM24 24h1v1h-1zM29 24h2v1h-2zM32 24h1v1h-1zM9 25h1v1h-1zM13 25h1v1h-1zM17 25h2v1h-2zM21 25h3v1h-3zM25 25h1v1h-1zM27 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM6 26h5v1h-5zM12 26h1v1h-1zM15 26h2v1h-2zM18 26h2v1h-2zM21 26h1v1h-1zM25 26h8v1h-8zM14 27h3v1h-3zM19 27h3v1h-3zM23 27h4v1h-4zM30 27h5v1h-5zM6 28h7v1h-7zM14 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h2v1h-2zM33 28h1v1h-1zM6 29h1v1h-1zM12 29h1v1h-1zM14 29h1v1h-1zM17 29h2v1h-2zM22 29h2v1h-2zM25 29h2v1h-2zM30 29h2v1h-2zM33 29h1v1h-1zM6 30h1v1h-1zM8 30h3v1h-3zM12 30h1v1h-1zM15 30h1v1h-1zM17 30h2v1h-2zM20 30h2v1h-2zM26 30h5v1h-5zM32 30h3v1h-3zM6 31h1v1h-1zM8 31h3v1h-3zM12 31h1v1h-1zM14 31h1v1h-1zM16 31h1v1h-1zM18 31h3v1h-3zM22 31h2v1h-2zM26 31h1v1h-1zM29 31h3v1h-3zM33 31h1v1h-1zM6 32h1v1h-1zM8 32h3v1h-3zM12 32h1v1h-1zM14 32h2v1h-2zM19 32h1v1h-1zM21 32h2v1h-2zM27 32h1v1h-1zM29 32h1v1h-1zM32 32h1v1h-1zM34 32h1v1h-1zM6 33h1v1h-1zM12 33h1v1h-1zM15 33h1v1h-1zM17 33h2v1h-2zM20 33h1v1h-1zM22 33h1v1h-1zM25 33h2v1h-2zM29 33h1v1h-1zM31 33h1v1h-1zM33 33h1v1h-1zM6 34h7v1h-7zM14 34h1v1h-1zM17 34h2v1h-2zM20 34h4v1h-4zM26 34h2v1h-2zM31 34h1v1h-1zM33 34h1v1h-1z"/></svg></div>
-        <span>Escaneie ou toque<br>para chamar no WhatsApp</span>
+        <span>Escaneie ou toque<br>para agendar no WhatsApp</span>
       </a>
       </div>
       <div id="contact">
@@ -349,7 +352,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
     </div>
   </div>
   <div id="hint">Respire fundo.<br><small>Toque para começar a ouvir algo relaxante</small></div>
-  <div id="bub" role="status" aria-live="polite"><div class="cl"><i class="cb c1"></i><i class="cb c2"></i><i class="cb c3"></i><i class="cb c4"></i><i class="cb c5"></i><i class="cb c6"></i><i class="cb c7"></i><i class="cb c8"></i><i class="cb c9"></i><i class="cb c10"></i><span id="bubt"></span></div><i class="tl t1"></i><i class="tl t2"></i><i class="tl t3"></i></div>
+  <div id="bub" role="status" aria-live="polite"><div class="cl"><i class="cb c1"></i><i class="cb c2"></i><i class="cb c3"></i><i class="cb c4"></i><i class="cb c5"></i><i class="cb c6"></i><i class="cb c7"></i><i class="cb c8"></i><i class="cb c9"></i><i class="cb c10"></i><span id="bubt"></span><a id="bubl" href="https://wa.me/5546988009738" target="_blank" rel="noopener">Agende seu atendimento pelo WhatsApp</a></div><i class="tl t1"></i><i class="tl t2"></i><i class="tl t3"></i></div>
   <div id="toast"></div>
 </div>
 <script>
@@ -682,7 +685,7 @@ $('sm').addEventListener('click',function(e){e.stopPropagation();var o=!$('bot')
 $('back').addEventListener('click',function(e){e.stopPropagation();closeSob();});
 document.querySelectorAll('.soc img').forEach(function(im){im.onload=function(){im.parentNode.classList.add('has');};im.src=im.getAttribute('data-src');});
 /* balão de boas-vindas sobre a foto, após o primeiro toque */
-var BUBTXT='Olá, seja bem vindo(a)! É um prazer enorme ter você aqui & sinta-se em casa',bubDone=false,bubT=0,bubTy=0;
+var BUBTXT='Olá, seja bem vindo(a)! É um prazer enorme ter você aqui & sinta-se em casa.',bubDone=false,bubT=0,bubTy=0;
 function placeBub(){
   var b=$('bub'),ph=document.querySelector('.view1 .ph');if(!ph)return;
   var r=ph.getBoundingClientRect(),w=b.offsetWidth,h=b.offsetHeight,vw=window.innerWidth;
@@ -697,12 +700,12 @@ function showBubble(){
   tx.textContent=BUBTXT;placeBub();
   var i=0;tx.textContent='';
   b.classList.add('on');
-  function typ(){if(reduce){tx.textContent=BUBTXT;return;}i+=2;tx.textContent=BUBTXT.slice(0,i);if(i<BUBTXT.length)bubTy=setTimeout(typ,32);}
+  function typ(){if(reduce){tx.textContent=BUBTXT;b.classList.add('done');return;}i+=2;tx.textContent=BUBTXT.slice(0,i);if(i<BUBTXT.length)bubTy=setTimeout(typ,32);else b.classList.add('done');}
   /* reserva a altura final para o balão não "pular" enquanto digita */
   tx.textContent=BUBTXT;placeBub();tx.textContent='';b.style.minHeight=b.offsetHeight+'px';b.style.minWidth=b.offsetWidth+'px';
   setTimeout(typ,450);
 }
-function hideBubble(){var b=$('bub');clearTimeout(bubT);clearTimeout(bubTy);b.classList.add('off');setTimeout(function(){b.classList.remove('on','off');},520);}
+function hideBubble(){var b=$('bub');clearTimeout(bubT);clearTimeout(bubTy);b.classList.add('off');setTimeout(function(){b.classList.remove('on','off','done');},520);}
 window.addEventListener('resize',function(){if($('bub').classList.contains('on'))placeBub();});
 var rsT=0;
 function placeClk(){var b=$('top').getBoundingClientRect().bottom;document.documentElement.style.setProperty('--clk',Math.round(b)+'px');}
