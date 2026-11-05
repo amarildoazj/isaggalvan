@@ -152,7 +152,8 @@ body.idle{cursor:none}
 .mt[data-m=img] span[data-m=img],.mt[data-m=ascii] span[data-m=ascii]{opacity:1;color:var(--ink);font-weight:700}
 @media(max-width:999px){.mt{position:fixed;left:auto;top:12px;right:12px;margin:0;font-size:11px}}
 #hms{font-size:var(--fs);line-height:1;font-weight:600;letter-spacing:.02em;font-variant-numeric:tabular-nums}
-#hms i{font-style:normal;animation:pisca 1s steps(1) infinite}
+#hms i{font-style:normal}
+#hms i.cl{display:inline-block;width:.42em;height:.72em;margin:0 .02em;vertical-align:baseline;background:radial-gradient(circle at 50% 32%,var(--ink) .088em,transparent .094em),radial-gradient(circle at 50% 74%,var(--ink) .088em,transparent .094em)}
 #hms b{font-weight:600;color:var(--yl)}
 @keyframes pisca{0%{opacity:1}50%{opacity:.3}}
 #wd{margin-top:.5em;font-size:max(12px,calc(var(--fs)*.2));letter-spacing:.32em;text-transform:uppercase;font-weight:600;padding-left:.32em}
@@ -720,7 +721,7 @@ var fWd=new Intl.DateTimeFormat(CONFIG.idioma,{weekday:'long'}),fMes=new Intl.Da
 function two(n){return (n<10?'0':'')+n;}
 function tickClock(){
   var d=new Date(),sec=d.getSeconds();if(sec===lastSec)return;lastSec=sec;
-  elH.innerHTML=two(d.getHours())+'<i>:</i>'+two(d.getMinutes())+'<i>:</i><b>'+two(sec)+'</b>';
+  elH.innerHTML=two(d.getHours())+'<i class="cl"></i>'+two(d.getMinutes())+'<i class="cl"></i><b>'+two(sec)+'</b>';
   elW.textContent=fWd.format(d);
   elD.textContent=d.getDate()+' '+CONFIG.textos.de+' '+fMes.format(d)+' '+CONFIG.textos.de+' '+d.getFullYear();
 }
