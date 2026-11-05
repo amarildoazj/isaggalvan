@@ -180,11 +180,13 @@ body.idle{cursor:none}
 .soc{display:none;position:relative;flex:none;border-radius:50%;background:#fff;color:#111;border:2px solid #fff;align-items:center;justify-content:center;font-weight:700;font-size:11px;letter-spacing:.02em;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.35);overflow:hidden;padding:0}
 .soc .fb{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:14px;line-height:1}.soc svg{width:74%;height:74%}
 .soc img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:none}.soc.has img{display:block}.soc.has .fb{display:none}
-#ig2{background:var(--ig);border-color:var(--ig);color:#fff}#wa2{background:var(--wa);border-color:var(--wa);color:#fff}#mp2{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-html[data-theme=light] #mp2{color:#121110}
-#ig2 .fb,#wa2 .fb{color:#121110}
-html[data-theme=light] #ig2 .fb,html[data-theme=light] #wa2 .fb{color:#fff}
+.soc.ig,.soc.wa,.soc.mp{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+html[data-theme=light] .soc.mp{color:#121110}
 @media(max-width:999px){#tgrow .soc{display:flex}}
+#qrs .ctrls svg{width:56%;height:56%;box-shadow:none;border-radius:0}
+#qrs .ctrls .soc svg{width:74%;height:74%}
+#qrs .ctrls .soc .fb{color:inherit;font-weight:700;letter-spacing:.02em;text-align:center;line-height:1}
+@media(min-width:1000px){#qrs .soc{display:flex;width:clamp(44px,3.4vw,70px);height:clamp(44px,3.4vw,70px);font-size:clamp(13px,1vw,18px)}#qrs .ctrls .soc{margin:0}}
 html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 .ctrls{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1vw,14px);flex:none}
 #contact{flex:1 1 100%;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:clamp(10px,1.6vw,16px);
@@ -273,9 +275,9 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
           <span class="m"><i class="open">Mais informações ▲</i><i class="close">Mais informações ▼</i></span>
         </button>
         <div class="ctrls">
-        <a id="ig2" class="soc" href="https://www.instagram.com/isaggalvan/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb">IG</span><img alt="" data-src="instagram.png"></a>
-        <a id="wa2" class="soc" href="https://wa.me/5546988009738" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span class="fb">WA</span><img alt="" data-src="whatsapp.png"></a>
-        <a id="mp2" class="soc" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" aria-label="Mapa" title="Mapa"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z"/><circle cx="12" cy="10.3" r="2.5" fill="#fff"/></svg></span><img alt="" data-src="mapa.png"></a>
+        <a class="soc ig" href="https://www.instagram.com/isaggalvan/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb">IG</span><img alt="" data-src="instagram.png"></a>
+        <a class="soc wa" href="https://wa.me/5546988009738" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span class="fb">WA</span><img alt="" data-src="whatsapp.png"></a>
+        <a class="soc mp" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" aria-label="Mapa" title="Mapa"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z"/><circle cx="12" cy="10.3" r="2.5" fill="#fff"/></svg></span><img alt="" data-src="mapa.png"></a>
         <button id="snd2" class="snd" type="button" aria-label="Som" title="Som"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor"/><g class="w"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></g><g class="x"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg></button>
         <button id="thm2" class="thm" type="button" aria-label="Dia e noite" title="Dia / noite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g class="moon"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="currentColor"/></g><g class="sun"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button>
         </div>
@@ -292,6 +294,9 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
       </div>
       <div id="qrs">
       <div class="ctrls">
+      <a class="soc ig" href="https://www.instagram.com/isaggalvan/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb">IG</span><img alt="" data-src="instagram.png"></a>
+        <a class="soc wa" href="https://wa.me/5546988009738" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span class="fb">WA</span><img alt="" data-src="whatsapp.png"></a>
+        <a class="soc mp" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" aria-label="Mapa" title="Mapa"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z"/><circle cx="12" cy="10.3" r="2.5" fill="#fff"/></svg></span><img alt="" data-src="mapa.png"></a>
       <button id="snd" class="snd" type="button" aria-label="Som" title="Som">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor"/><g class="w"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></g><g class="x"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg>
       </button>
