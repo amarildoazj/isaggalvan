@@ -82,8 +82,12 @@ var CONFIG={
     somLigado:'Som ligado',
     somDesligado:'Som desligado',
     animacoesOff:'Animações pausadas',
-    animacoesOn:'Animações ativas'
+    animacoesOn:'Animações ativas',
+    modoImagem:'Modo imagem',
+    modoAscii:'Modo ASCII'
   },
+
+  relogio:{ cliques:10 },                           /* clique no relógio N vezes: troca foto <-> ASCII */
 
   coelho:{                                          /* easter egg: clique no nome várias vezes */
     cliques:10,
@@ -175,7 +179,7 @@ body.idle{cursor:none}
 .mt:hover{opacity:1}.mt i{font-style:normal;opacity:.5}.mt span{opacity:.55}
 .mt[data-m=img] span[data-m=img],.mt[data-m=ascii] span[data-m=ascii]{opacity:1;color:var(--ink);font-weight:700}
 @media(max-width:999px){.mt{position:fixed;left:auto;top:12px;right:12px;margin:0;font-size:11px}}
-#hms{font-size:var(--fs);line-height:1;font-weight:600;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+#hms{pointer-events:auto;font-size:var(--fs);line-height:1;font-weight:600;letter-spacing:.02em;font-variant-numeric:tabular-nums}
 #hms i{font-style:normal}
 #hms i.cl{display:inline-block;width:.42em;height:.72em;margin:0 .02em;vertical-align:baseline;background:radial-gradient(circle at 50% 32%,var(--ink) .088em,transparent .094em),radial-gradient(circle at 50% 74%,var(--ink) .088em,transparent .094em)}
 #hms b{font-weight:600;color:var(--yl)}
@@ -414,6 +418,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #bub.on #bubx{pointer-events:auto}
 #bub #bubx:hover{background:var(--yl);color:var(--bg)}
 html[data-theme=light] #bub{--bbo:#f6f3ea}
+.mt{display:none!important}   /* botão IMAGEM|ASCII removido: a troca é por 10 cliques no relógio */
 @media(min-width:1000px) and (max-width:1199px),(min-width:1000px) and (max-height:620px){#desc{display:none}}   /* sem espaço: texto fica só no código */
 #side,#card{position:relative;z-index:10}   /* os cartões ficam por cima do "Respire fundo" */
 .view1 .nm{position:relative}
@@ -1086,6 +1091,14 @@ salaTry.onload=function(){
 };
 salaTry.src=CONFIG.imagens.sala;
 $('mt').addEventListener('click',function(e){e.stopPropagation();userMode=true;setMode(MODE==='img'?'ascii':'img');});
+/* 10 cliques no relógio: alterna foto <-> ASCII (só se existirem as fotos) */
+(function(){var n=0,t=0;
+  $('hms').addEventListener('click',function(){
+    clearTimeout(t);n++;
+    if(n>=CONFIG.relogio.cliques){n=0;
+      if($('mt').hidden)return;                    /* sem foto na pasta: só existe o ASCII */
+      userMode=true;setMode(MODE==='img'?'ascii':'img');toast(MODE==='img'?CONFIG.avisos.modoImagem:CONFIG.avisos.modoAscii);return;}
+    t=setTimeout(function(){n=0;},3000);});})();
 requestAnimationFrame(frame);
 audioStart();
 /* o navegador só libera o som após um gesto: o toque/clique no botão "Respire fundo" liga na hora */
