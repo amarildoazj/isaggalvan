@@ -150,7 +150,9 @@ body.idle{cursor:none}
   #sm i{font-style:normal}#sm .close{display:none}#bot.sm-open #sm .close{display:inline}#bot.sm-open #sm .open{display:none}
   #sm{display:none!important}
   #bot.txt-open #card{display:none}
-  #tgrow{display:flex;align-items:center;gap:12px}
+  #tgrow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 8px}
+  #tg{flex:0 0 auto!important;min-width:max-content!important}
+  #tgrow .ctrls{margin-left:auto}
   #tg{flex:1;min-width:0;text-align:left;background:none;border:0;padding:2px 0;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:3px}
   #tg .h,#tg .r{display:none}
   #tg .m{font-size:clamp(15px,4.4vw,19px);font-weight:700;letter-spacing:.02em}
