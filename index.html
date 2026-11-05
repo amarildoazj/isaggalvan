@@ -374,6 +374,10 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #toast{position:absolute;left:50%;top:14px;transform:translateX(-50%);padding:6px 12px;border-radius:8px;
   background:rgba(var(--bgrgb),.85);border:1px solid var(--line);font-size:13px;letter-spacing:.04em;opacity:0;transition:opacity .25s;pointer-events:none}
 #toast.on{opacity:1}
+#bub #bubx{position:absolute;top:-9px;right:-9px;width:28px;height:28px;border-radius:50%;border:1px solid #86538C;background:var(--bbg);color:var(--yl);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;pointer-events:none;opacity:0;transition:opacity .4s;z-index:2}
+#bub.done #bubx,#bub.on #bubx{opacity:1}
+#bub.on #bubx{pointer-events:auto}
+#bub #bubx:hover{background:var(--yl);color:var(--bg)}
 html[data-theme=light] #bub{--bbg:#f6f3ea}
 @media(min-width:1000px) and (max-width:1199px){#handle{font-size:clamp(20px,1.95vw,50px)}}
 </style>
@@ -456,7 +460,7 @@ html[data-theme=light] #bub{--bbg:#f6f3ea}
     </div>
   </div>
   <div id="hint">Respire fundo.<br><small>Toque para começar a ouvir algo relaxante</small></div>
-  <div id="bub" role="status" aria-live="polite"><div class="cl"><i class="cb c1"></i><i class="cb c2"></i><i class="cb c3"></i><i class="cb c4"></i><i class="cb c5"></i><i class="cb c6"></i><i class="cb c7"></i><i class="cb c8"></i><i class="cb c9"></i><i class="cb c10"></i><span id="bubt"></span><a id="bubl" data-link="whatsapp" href="#" target="_blank" rel="noopener">Agende seu atendimento pelo WhatsApp</a></div><i class="tl t1"></i><i class="tl t2"></i><i class="tl t3"></i></div>
+  <div id="bub" role="status" aria-live="polite"><div class="cl"><i class="cb c1"></i><i class="cb c2"></i><i class="cb c3"></i><i class="cb c4"></i><i class="cb c5"></i><i class="cb c6"></i><i class="cb c7"></i><i class="cb c8"></i><i class="cb c9"></i><i class="cb c10"></i><button id="bubx" type="button" aria-label="Fechar"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button><span id="bubt"></span><a id="bubl" data-link="whatsapp" href="#" target="_blank" rel="noopener">Agende seu atendimento pelo WhatsApp</a></div><i class="tl t1"></i><i class="tl t2"></i><i class="tl t3"></i></div>
   <div id="toast"></div>
 </div>
 <script>
@@ -910,6 +914,7 @@ function showBubble(){
   tx.textContent=BUBTXT;placeBub();tx.textContent='';b.style.minHeight=b.offsetHeight+'px';b.style.minWidth=b.offsetWidth+'px';
   setTimeout(typ,450);
 }
+$('bubx').addEventListener('click',function(e){e.stopPropagation();hideBubble();});
 function hideBubble(){var b=$('bub');clearTimeout(bubT);clearTimeout(bubTy);b.classList.add('off');setTimeout(function(){b.classList.remove('on','off','done','ready');},520);}
 window.addEventListener('resize',function(){if($('bub').classList.contains('on'))placeBub();});
 var rsT=0;
