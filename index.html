@@ -880,6 +880,11 @@ $('back').addEventListener('click',function(e){e.stopPropagation();closeSob();})
 document.querySelectorAll('.soc img').forEach(function(im){im.onload=function(){im.parentNode.classList.add('has');};im.src=im.getAttribute('data-src');});
 /* balão de boas-vindas sobre a foto, após o primeiro toque */
 var BUBTXT=CONFIG.balao.texto,bubDone=false,bubT=0,bubTy=0;
+function fitName(){var h=$('handle'),bx=$('info');if(!h||!bx)return;h.style.fontSize='';if(innerWidth<1000)return;
+  var av=bx.clientWidth,w=h.scrollWidth;if(av>0&&w>av){h.style.fontSize=(parseFloat(getComputedStyle(h).fontSize)*av/w*.97).toFixed(2)+'px';}}
+window.addEventListener('resize',fitName);window.addEventListener('load',function(){fitName();setTimeout(fitName,300);});
+try{document.fonts&&document.fonts.ready.then(fitName);}catch(e){}
+fitName();
 function placeHint(){var h=$('hint');if(innerWidth<1000){h.style.top='';return;}
 var t=$('top').getBoundingClientRect().bottom,b=Math.min($('bot').getBoundingClientRect().top,innerHeight);
 var s=$('side');if(s){var st=s.getBoundingClientRect().top;if(st>0)b=Math.min(b,st);}
