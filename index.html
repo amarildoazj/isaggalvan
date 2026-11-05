@@ -832,7 +832,7 @@ function audioStart(){
 }
 function resumeAC(){try{if(AC&&AC.state!=='running'&&!document.hidden)AC.resume();}catch(e){}}
 var gesture=false;
-function syncUI(){var o=muted||!audioOn;$('snd').classList.toggle('off',o);$('snd2').classList.toggle('off',o);
+function syncUI(){var o=muted||!audioOn||!gesture;   /* antes do "Respire fundo": botão de som fica com X */$('snd').classList.toggle('off',o);$('snd2').classList.toggle('off',o);
   $('hint').classList.toggle('off',!!(gesture&&AC&&AC.state==='running'));}
 setInterval(syncUI,400);
 function setMute(m){muted=m;if(AC&&audioOn){outG.gain.cancelScheduledValues(AC.currentTime);
@@ -865,7 +865,8 @@ function setTheme(t,save){
   buildArt();buildFace();
 }
 function toggleTheme(){setTheme(TH==='dark'?'light':'dark',true);toast(TH==='dark'?CONFIG.avisos.noite:CONFIG.avisos.dia);}
-function toggleMute(){if(!audioOn){audioStart();return;}if(AC.state!=='running'){resumeAC();return;}setMute(!muted);toast(muted?CONFIG.avisos.somDesligado:CONFIG.avisos.somLigado);syncUI();}
+function toggleMute(){if(!gesture)return;   /* o som só liga pelo "Respire fundo" */
+  if(!audioOn){audioStart();return;}if(AC.state!=='running'){resumeAC();return;}setMute(!muted);toast(muted?CONFIG.avisos.somDesligado:CONFIG.avisos.somLigado);syncUI();}
 ['thm','thm2'].forEach(function(i){$(i).addEventListener('click',function(e){e.stopPropagation();toggleTheme();});});
 ['snd','snd2'].forEach(function(i){$(i).addEventListener('click',function(e){e.stopPropagation();toggleMute();});});
 var closeT=0;
