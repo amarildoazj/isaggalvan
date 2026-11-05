@@ -39,9 +39,10 @@ body.idle{cursor:none}
 #tag{margin-top:.45em;font-size:clamp(12px,2.2vw,19px);line-height:1.5;color:var(--muted)}
 #mod{display:inline-flex;align-items:center;gap:.55em;margin-top:.7em;padding:.35em .8em;border-radius:99px;
   border:1px solid var(--line);font-size:clamp(11px,2vw,17px);letter-spacing:.03em}
-#mod::before{content:"";width:.6em;height:.6em;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+#mod::before{content:"";width:.6em;height:.6em;border-radius:50%;background:#2fbf71;box-shadow:0 0 8px #2fbf71}
 #qrs{flex:none;display:flex;align-items:center;gap:clamp(10px,1.8vw,22px)}
 .qr{flex:none;display:flex;flex-direction:column;align-items:center;gap:7px;width:clamp(84px,15vw,170px);color:var(--ink);text-decoration:none}
+#qrs .qb{position:relative;width:100%}
 #qrs svg{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.35)}
 #qrs span{font-size:clamp(9.5px,1.7vw,12px);letter-spacing:.04em;text-align:center;line-height:1.35;color:var(--muted)}
 
@@ -58,6 +59,9 @@ body.idle{cursor:none}
 .ph canvas{display:none}.ph.ascii canvas{display:block}.ph.ascii img{display:none}
 .nm{text-align:center;font-size:clamp(11px,.95vw,16px);letter-spacing:.04em;color:var(--muted);line-height:1.4}
 .nm b{display:block;color:var(--accent);font-size:1.12em}
+.sph{display:flex;flex-direction:column;align-items:center;gap:10px;margin:2px 0 16px}
+.sph .ph{width:clamp(130px,15vw,230px);border-radius:18px}
+.sph .nm{text-align:center}
 .lk{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;font:inherit;font-weight:700;color:var(--ink);
   font-size:clamp(12.5px,1.05vw,18px);line-height:1.3;padding:.7em 1em;border-radius:12px;border:1px solid var(--line);background:rgba(var(--bgrgb),.45);cursor:pointer}
 .lk:hover{border-color:var(--accent)}.lk i{font-style:normal;color:var(--accent);flex:none}
@@ -109,7 +113,7 @@ body.idle{cursor:none}
   #sm span{flex:none;font-size:clamp(13px,3.6vw,16px);font-weight:700;color:var(--ink)}
   #sm .close{font-size:1.25em;padding:0 .3em}
   #sm i{font-style:normal}#sm .close{display:none}#bot.sm-open #sm .close{display:inline}#bot.sm-open #sm .open{display:none}
-  .nm b{display:none}
+  .view1 .nm b{display:none}
   #side{display:none}#bot.sm-open #side{display:block}
   #bot.info-open #sm,#bot.txt-open #sm{display:none}
   #bot.info-open #side{display:none}
@@ -165,7 +169,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
     <button id="sm" type="button" aria-expanded="false"><b>Isadora G. Galvan</b><span><i class="open">Sobre mim ▲</i><i class="close">▼</i></span></button>
     <div id="side">
       <div class="view1">
-        <div class="ph" id="ph"><img id="phimg" alt="Isadora G. Galvan"><canvas id="phcv" aria-label="Retrato em ASCII"></canvas></div>
+        <div class="ph"><img alt="Isadora G. Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div>
         <div class="pw">
           <div class="nm"><b>Isadora G. Galvan</b>Psicóloga Clínica · CRP 08/37885</div>
           <button class="lk" type="button" data-sob="0">Sobre mim e meu trabalho <i>›</i></button>
@@ -176,6 +180,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <div id="sobh"><button id="back" type="button">← Voltar</button><div id="sobt"></div></div>
         <div id="sobb">
           <div class="sec" data-t="Sobre mim e meu trabalho" hidden>
+            <div class="sph"><div class="ph"><img alt="Isadora G. Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora G. Galvan</b>Psicóloga Clínica · CRP 08/37885</div></div>
             <p>Eu sou a Isa, Psicóloga Clínica (CRP 08/37885), sou formada em Psicologia, pós graduada em Terapia Cognitivo-Comportamental e Neuropsicopedagogia.</p>
             <p>Atuo na área de saúde pública e clínica.</p>
             <p>Estar disposto(a) para iniciar a psicoterapia requer coragem para a encarar a si mesmo, comprometimento e responsabilidade com o seu processo.</p>
@@ -183,6 +188,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
             <p>Podem ser realizados de forma presencial e on-line!<br>E fique tranquilo(a), atendimentos on-line apresentam a mesma eficácia de atendimentos presenciais.</p>
           </div>
           <div class="sec" data-t="Sobre a Terapia Cognitivo-Comportamental" hidden>
+            <div class="sph"><div class="ph"><img alt="Isadora G. Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora G. Galvan</b>Psicóloga Clínica · CRP 08/37885</div></div>
             <h4>Sobre Terapias Cognitivo-Comportamentais...</h4>
             <blockquote>“As reações das pessoas passam a fazer sentido depois que sabemos o que elas estavam pensando. Não é a situação em si que determina o que as pessoas sentem ou fazem, mas como elas interpretam (pensam sobre) uma situação.”</blockquote>
             <cite>— J. Beck</cite>
@@ -238,11 +244,11 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
       <button id="thm" class="thm" type="button" aria-label="Dia e noite" title="Dia / noite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><g class="moon"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z" fill="currentColor"/></g><g class="sun"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg></button>
       </div>
       <a class="qr" href="https://www.instagram.com/isaggalvan/" target="_blank" rel="noopener" aria-label="QR code para o Instagram @isaggalvan">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code"><rect width="41" height="41" fill="#fff"/><path fill="#111" d="M6 6h7v1h-7zM14 6h2v1h-2zM19 6h1v1h-1zM24 6h3v1h-3zM28 6h7v1h-7zM6 7h1v1h-1zM12 7h1v1h-1zM19 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM6 8h1v1h-1zM8 8h3v1h-3zM12 8h1v1h-1zM14 8h1v1h-1zM17 8h5v1h-5zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h1v1h-1zM30 8h3v1h-3zM34 8h1v1h-1zM6 9h1v1h-1zM8 9h3v1h-3zM12 9h1v1h-1zM14 9h2v1h-2zM17 9h1v1h-1zM23 9h1v1h-1zM25 9h1v1h-1zM28 9h1v1h-1zM30 9h3v1h-3zM34 9h1v1h-1zM6 10h1v1h-1zM8 10h3v1h-3zM12 10h1v1h-1zM14 10h4v1h-4zM19 10h4v1h-4zM25 10h2v1h-2zM28 10h1v1h-1zM30 10h3v1h-3zM34 10h1v1h-1zM6 11h1v1h-1zM12 11h1v1h-1zM15 11h1v1h-1zM18 11h1v1h-1zM20 11h1v1h-1zM23 11h4v1h-4zM28 11h1v1h-1zM34 11h1v1h-1zM6 12h7v1h-7zM14 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM26 12h1v1h-1zM28 12h7v1h-7zM15 13h1v1h-1zM17 13h1v1h-1zM19 13h2v1h-2zM23 13h2v1h-2zM6 14h4v1h-4zM12 14h1v1h-1zM14 14h1v1h-1zM19 14h2v1h-2zM22 14h3v1h-3zM27 14h1v1h-1zM30 14h3v1h-3zM34 14h1v1h-1zM6 15h1v1h-1zM9 15h1v1h-1zM13 15h3v1h-3zM22 15h9v1h-9zM34 15h1v1h-1zM7 16h1v1h-1zM9 16h4v1h-4zM14 16h1v1h-1zM20 16h1v1h-1zM23 16h2v1h-2zM28 16h3v1h-3zM32 16h2v1h-2zM6 17h5v1h-5zM13 17h1v1h-1zM17 17h5v1h-5zM24 17h2v1h-2zM27 17h4v1h-4zM34 17h1v1h-1zM6 18h1v1h-1zM9 18h1v1h-1zM11 18h2v1h-2zM14 18h2v1h-2zM17 18h1v1h-1zM21 18h4v1h-4zM31 18h2v1h-2zM6 19h3v1h-3zM10 19h1v1h-1zM13 19h1v1h-1zM15 19h3v1h-3zM19 19h1v1h-1zM21 19h2v1h-2zM25 19h1v1h-1zM28 19h2v1h-2zM32 19h3v1h-3zM7 20h1v1h-1zM11 20h2v1h-2zM14 20h3v1h-3zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h4v1h-4zM27 20h1v1h-1zM29 20h2v1h-2zM32 20h3v1h-3zM7 21h3v1h-3zM11 21h1v1h-1zM14 21h2v1h-2zM18 21h2v1h-2zM21 21h2v1h-2zM25 21h1v1h-1zM27 21h4v1h-4zM33 21h1v1h-1zM7 22h1v1h-1zM9 22h1v1h-1zM12 22h1v1h-1zM15 22h3v1h-3zM21 22h1v1h-1zM24 22h1v1h-1zM27 22h1v1h-1zM30 22h2v1h-2zM33 22h1v1h-1zM7 23h1v1h-1zM10 23h1v1h-1zM14 23h1v1h-1zM16 23h1v1h-1zM18 23h2v1h-2zM21 23h1v1h-1zM23 23h1v1h-1zM26 23h2v1h-2zM29 23h1v1h-1zM31 23h3v1h-3zM6 24h1v1h-1zM8 24h2v1h-2zM11 24h2v1h-2zM14 24h2v1h-2zM17 24h2v1h-2zM21 24h2v1h-2zM24 24h1v1h-1zM26 24h2v1h-2zM29 24h1v1h-1zM32 24h1v1h-1zM10 25h1v1h-1zM16 25h1v1h-1zM18 25h1v1h-1zM23 25h3v1h-3zM27 25h2v1h-2zM32 25h1v1h-1zM6 26h4v1h-4zM12 26h3v1h-3zM16 26h4v1h-4zM22 26h11v1h-11zM14 27h3v1h-3zM18 27h3v1h-3zM22 27h1v1h-1zM26 27h1v1h-1zM30 27h5v1h-5zM6 28h7v1h-7zM17 28h3v1h-3zM22 28h1v1h-1zM25 28h2v1h-2zM28 28h1v1h-1zM30 28h2v1h-2zM33 28h1v1h-1zM6 29h1v1h-1zM12 29h1v1h-1zM21 29h1v1h-1zM24 29h1v1h-1zM26 29h1v1h-1zM30 29h2v1h-2zM33 29h2v1h-2zM6 30h1v1h-1zM8 30h3v1h-3zM12 30h1v1h-1zM15 30h1v1h-1zM18 30h1v1h-1zM20 30h2v1h-2zM23 30h1v1h-1zM26 30h5v1h-5zM32 30h1v1h-1zM6 31h1v1h-1zM8 31h3v1h-3zM12 31h1v1h-1zM14 31h5v1h-5zM20 31h4v1h-4zM25 31h3v1h-3zM30 31h2v1h-2zM34 31h1v1h-1zM6 32h1v1h-1zM8 32h3v1h-3zM12 32h1v1h-1zM14 32h1v1h-1zM16 32h2v1h-2zM19 32h1v1h-1zM25 32h1v1h-1zM27 32h1v1h-1zM29 32h1v1h-1zM32 32h1v1h-1zM34 32h1v1h-1zM6 33h1v1h-1zM12 33h1v1h-1zM14 33h4v1h-4zM20 33h1v1h-1zM22 33h1v1h-1zM26 33h1v1h-1zM29 33h1v1h-1zM31 33h1v1h-1zM33 33h1v1h-1zM6 34h7v1h-7zM14 34h3v1h-3zM18 34h1v1h-1zM20 34h1v1h-1zM24 34h3v1h-3zM31 34h1v1h-1zM33 34h1v1h-1z"/></svg>
+        <div class="qb"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code"><defs><linearGradient id="igg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#e0532b"/><stop offset=".5" stop-color="#c81f8a"/><stop offset="1" stop-color="#5a46d1"/></linearGradient></defs><rect width="41" height="41" fill="#fff"/><path fill="url(#igg)" d="M6 6h7v1h-7zM15 6h1v1h-1zM17 6h2v1h-2zM20 6h1v1h-1zM22 6h3v1h-3zM28 6h7v1h-7zM6 7h1v1h-1zM12 7h1v1h-1zM14 7h3v1h-3zM19 7h2v1h-2zM23 7h2v1h-2zM28 7h1v1h-1zM34 7h1v1h-1zM6 8h1v1h-1zM8 8h3v1h-3zM12 8h1v1h-1zM14 8h2v1h-2zM17 8h2v1h-2zM20 8h1v1h-1zM22 8h1v1h-1zM25 8h2v1h-2zM28 8h1v1h-1zM30 8h3v1h-3zM34 8h1v1h-1zM6 9h1v1h-1zM8 9h3v1h-3zM12 9h1v1h-1zM14 9h1v1h-1zM17 9h1v1h-1zM20 9h4v1h-4zM25 9h2v1h-2zM28 9h1v1h-1zM30 9h3v1h-3zM34 9h1v1h-1zM6 10h1v1h-1zM8 10h3v1h-3zM12 10h1v1h-1zM15 10h1v1h-1zM19 10h1v1h-1zM22 10h4v1h-4zM28 10h1v1h-1zM30 10h3v1h-3zM34 10h1v1h-1zM6 11h1v1h-1zM12 11h1v1h-1zM16 11h1v1h-1zM18 11h3v1h-3zM22 11h2v1h-2zM26 11h1v1h-1zM28 11h1v1h-1zM34 11h1v1h-1zM6 12h7v1h-7zM14 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM26 12h1v1h-1zM28 12h7v1h-7zM14 13h2v1h-2zM17 13h1v1h-1zM19 13h1v1h-1zM26 13h1v1h-1zM6 14h1v1h-1zM12 14h1v1h-1zM14 14h4v1h-4zM20 14h2v1h-2zM23 14h1v1h-1zM25 14h1v1h-1zM27 14h2v1h-2zM31 14h3v1h-3zM7 15h5v1h-5zM15 15h2v1h-2zM20 15h2v1h-2zM23 15h3v1h-3zM29 15h2v1h-2zM32 15h2v1h-2zM11 16h2v1h-2zM14 16h1v1h-1zM16 16h3v1h-3zM21 16h1v1h-1zM26 16h3v1h-3zM6 17h1v1h-1zM9 17h2v1h-2zM13 17h2v1h-2zM16 17h1v1h-1zM20 17h3v1h-3zM27 17h1v1h-1zM29 17h1v1h-1zM31 17h1v1h-1zM8 18h3v1h-3zM12 18h4v1h-4zM18 18h4v1h-4zM24 18h3v1h-3zM28 18h2v1h-2zM34 18h1v1h-1zM6 19h1v1h-1zM9 19h1v1h-1zM11 19h1v1h-1zM13 19h1v1h-1zM16 19h1v1h-1zM19 19h8v1h-8zM28 19h1v1h-1zM30 19h1v1h-1zM33 19h2v1h-2zM6 20h1v1h-1zM9 20h1v1h-1zM12 20h1v1h-1zM18 20h4v1h-4zM23 20h1v1h-1zM28 20h2v1h-2zM31 20h2v1h-2zM6 21h6v1h-6zM14 21h4v1h-4zM19 21h2v1h-2zM25 21h2v1h-2zM29 21h2v1h-2zM32 21h1v1h-1zM34 21h1v1h-1zM6 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h2v1h-2zM20 22h1v1h-1zM23 22h1v1h-1zM26 22h1v1h-1zM29 22h1v1h-1zM31 22h2v1h-2zM6 23h1v1h-1zM8 23h2v1h-2zM13 23h3v1h-3zM17 23h2v1h-2zM21 23h10v1h-10zM32 23h3v1h-3zM6 24h5v1h-5zM12 24h1v1h-1zM14 24h1v1h-1zM19 24h3v1h-3zM23 24h3v1h-3zM27 24h2v1h-2zM31 24h1v1h-1zM34 24h1v1h-1zM6 25h1v1h-1zM8 25h2v1h-2zM11 25h1v1h-1zM15 25h1v1h-1zM20 25h1v1h-1zM25 25h6v1h-6zM6 26h2v1h-2zM9 26h1v1h-1zM12 26h3v1h-3zM21 26h1v1h-1zM23 26h1v1h-1zM26 26h5v1h-5zM32 26h3v1h-3zM14 27h1v1h-1zM16 27h1v1h-1zM18 27h2v1h-2zM21 27h1v1h-1zM26 27h1v1h-1zM30 27h2v1h-2zM6 28h7v1h-7zM15 28h1v1h-1zM17 28h1v1h-1zM19 28h8v1h-8zM28 28h1v1h-1zM30 28h3v1h-3zM6 29h1v1h-1zM12 29h1v1h-1zM15 29h2v1h-2zM18 29h2v1h-2zM21 29h2v1h-2zM25 29h2v1h-2zM30 29h1v1h-1zM33 29h1v1h-1zM6 30h1v1h-1zM8 30h3v1h-3zM12 30h1v1h-1zM15 30h1v1h-1zM17 30h1v1h-1zM19 30h1v1h-1zM21 30h2v1h-2zM25 30h7v1h-7zM34 30h1v1h-1zM6 31h1v1h-1zM8 31h3v1h-3zM12 31h1v1h-1zM15 31h2v1h-2zM19 31h1v1h-1zM21 31h2v1h-2zM24 31h2v1h-2zM27 31h1v1h-1zM29 31h1v1h-1zM31 31h2v1h-2zM34 31h1v1h-1zM6 32h1v1h-1zM8 32h3v1h-3zM12 32h1v1h-1zM17 32h1v1h-1zM19 32h4v1h-4zM24 32h1v1h-1zM28 32h6v1h-6zM6 33h1v1h-1zM12 33h1v1h-1zM16 33h6v1h-6zM27 33h3v1h-3zM31 33h2v1h-2zM34 33h1v1h-1zM6 34h7v1h-7zM14 34h3v1h-3zM19 34h3v1h-3zM23 34h1v1h-1zM25 34h1v1h-1zM27 34h1v1h-1zM29 34h4v1h-4z"/></svg></div>
         <span>Escaneie ou toque<br>para seguir no Instagram</span>
       </a>
       <a class="qr" href="https://wa.me/5546988009738" target="_blank" rel="noopener" aria-label="QR code para o WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" shape-rendering="crispEdges" role="img" aria-label="QR code"><rect width="37" height="37" fill="#fff"/><path fill="#111" d="M6 6h7v1h-7zM17 6h3v1h-3zM22 6h1v1h-1zM24 6h7v1h-7zM6 7h1v1h-1zM12 7h1v1h-1zM15 7h2v1h-2zM19 7h2v1h-2zM24 7h1v1h-1zM30 7h1v1h-1zM6 8h1v1h-1zM8 8h3v1h-3zM12 8h1v1h-1zM18 8h1v1h-1zM21 8h2v1h-2zM24 8h1v1h-1zM26 8h3v1h-3zM30 8h1v1h-1zM6 9h1v1h-1zM8 9h3v1h-3zM12 9h1v1h-1zM14 9h1v1h-1zM18 9h3v1h-3zM24 9h1v1h-1zM26 9h3v1h-3zM30 9h1v1h-1zM6 10h1v1h-1zM8 10h3v1h-3zM12 10h1v1h-1zM14 10h2v1h-2zM19 10h2v1h-2zM24 10h1v1h-1zM26 10h3v1h-3zM30 10h1v1h-1zM6 11h1v1h-1zM12 11h1v1h-1zM17 11h2v1h-2zM22 11h1v1h-1zM24 11h1v1h-1zM30 11h1v1h-1zM6 12h7v1h-7zM14 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM24 12h7v1h-7zM16 13h2v1h-2zM20 13h1v1h-1zM22 13h1v1h-1zM6 14h2v1h-2zM11 14h3v1h-3zM15 14h1v1h-1zM17 14h3v1h-3zM21 14h2v1h-2zM26 14h2v1h-2zM6 15h1v1h-1zM8 15h1v1h-1zM15 15h1v1h-1zM18 15h2v1h-2zM21 15h2v1h-2zM25 15h5v1h-5zM8 16h7v1h-7zM16 16h1v1h-1zM18 16h1v1h-1zM21 16h2v1h-2zM24 16h4v1h-4zM29 16h2v1h-2zM8 17h1v1h-1zM10 17h2v1h-2zM13 17h3v1h-3zM18 17h1v1h-1zM22 17h4v1h-4zM27 17h1v1h-1zM30 17h1v1h-1zM7 18h3v1h-3zM12 18h2v1h-2zM15 18h1v1h-1zM20 18h2v1h-2zM23 18h2v1h-2zM30 18h1v1h-1zM6 19h2v1h-2zM10 19h1v1h-1zM14 19h1v1h-1zM17 19h5v1h-5zM25 19h1v1h-1zM29 19h1v1h-1zM6 20h1v1h-1zM9 20h2v1h-2zM12 20h4v1h-4zM21 20h3v1h-3zM25 20h3v1h-3zM29 20h2v1h-2zM6 21h1v1h-1zM8 21h1v1h-1zM10 21h2v1h-2zM13 21h3v1h-3zM17 21h2v1h-2zM20 21h2v1h-2zM25 21h1v1h-1zM27 21h2v1h-2zM30 21h1v1h-1zM6 22h2v1h-2zM9 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM19 22h1v1h-1zM22 22h5v1h-5zM28 22h1v1h-1zM14 23h5v1h-5zM20 23h1v1h-1zM22 23h1v1h-1zM26 23h1v1h-1zM6 24h7v1h-7zM14 24h1v1h-1zM17 24h1v1h-1zM19 24h2v1h-2zM22 24h1v1h-1zM24 24h1v1h-1zM26 24h1v1h-1zM30 24h1v1h-1zM6 25h1v1h-1zM12 25h1v1h-1zM14 25h2v1h-2zM17 25h1v1h-1zM22 25h1v1h-1zM26 25h1v1h-1zM29 25h1v1h-1zM6 26h1v1h-1zM8 26h3v1h-3zM12 26h1v1h-1zM16 26h1v1h-1zM19 26h1v1h-1zM21 26h6v1h-6zM28 26h1v1h-1zM6 27h1v1h-1zM8 27h3v1h-3zM12 27h1v1h-1zM15 27h4v1h-4zM21 27h4v1h-4zM29 27h2v1h-2zM6 28h1v1h-1zM8 28h3v1h-3zM12 28h1v1h-1zM16 28h1v1h-1zM27 28h2v1h-2zM30 28h1v1h-1zM6 29h1v1h-1zM12 29h1v1h-1zM14 29h1v1h-1zM18 29h1v1h-1zM22 29h2v1h-2zM25 29h2v1h-2zM30 29h1v1h-1zM6 30h7v1h-7zM14 30h1v1h-1zM16 30h1v1h-1zM20 30h1v1h-1zM22 30h1v1h-1zM24 30h1v1h-1zM27 30h1v1h-1zM30 30h1v1h-1z"/></svg>
+        <div class="qb"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code"><rect width="41" height="41" fill="#fff"/><path fill="#1a9a54" d="M6 6h7v1h-7zM14 6h1v1h-1zM16 6h3v1h-3zM21 6h2v1h-2zM25 6h1v1h-1zM28 6h7v1h-7zM6 7h1v1h-1zM12 7h1v1h-1zM14 7h1v1h-1zM17 7h2v1h-2zM20 7h2v1h-2zM23 7h1v1h-1zM26 7h1v1h-1zM28 7h1v1h-1zM34 7h1v1h-1zM6 8h1v1h-1zM8 8h3v1h-3zM12 8h1v1h-1zM15 8h2v1h-2zM18 8h4v1h-4zM25 8h1v1h-1zM28 8h1v1h-1zM30 8h3v1h-3zM34 8h1v1h-1zM6 9h1v1h-1zM8 9h3v1h-3zM12 9h1v1h-1zM14 9h2v1h-2zM17 9h2v1h-2zM22 9h3v1h-3zM26 9h1v1h-1zM28 9h1v1h-1zM30 9h3v1h-3zM34 9h1v1h-1zM6 10h1v1h-1zM8 10h3v1h-3zM12 10h1v1h-1zM15 10h2v1h-2zM18 10h2v1h-2zM24 10h3v1h-3zM28 10h1v1h-1zM30 10h3v1h-3zM34 10h1v1h-1zM6 11h1v1h-1zM12 11h1v1h-1zM17 11h2v1h-2zM20 11h1v1h-1zM25 11h1v1h-1zM28 11h1v1h-1zM34 11h1v1h-1zM6 12h7v1h-7zM14 12h1v1h-1zM16 12h1v1h-1zM18 12h1v1h-1zM20 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM26 12h1v1h-1zM28 12h7v1h-7zM14 13h1v1h-1zM16 13h2v1h-2zM19 13h2v1h-2zM23 13h2v1h-2zM26 13h1v1h-1zM6 14h1v1h-1zM8 14h2v1h-2zM11 14h3v1h-3zM19 14h2v1h-2zM22 14h2v1h-2zM26 14h1v1h-1zM28 14h1v1h-1zM31 14h1v1h-1zM33 14h2v1h-2zM6 15h1v1h-1zM8 15h3v1h-3zM14 15h3v1h-3zM18 15h1v1h-1zM21 15h2v1h-2zM25 15h1v1h-1zM27 15h4v1h-4zM34 15h1v1h-1zM8 16h2v1h-2zM12 16h2v1h-2zM16 16h1v1h-1zM20 16h2v1h-2zM24 16h1v1h-1zM26 16h2v1h-2zM32 16h2v1h-2zM6 17h1v1h-1zM9 17h3v1h-3zM13 17h2v1h-2zM16 17h2v1h-2zM19 17h3v1h-3zM24 17h2v1h-2zM27 17h4v1h-4zM34 17h1v1h-1zM6 18h2v1h-2zM9 18h1v1h-1zM11 18h2v1h-2zM14 18h2v1h-2zM17 18h2v1h-2zM22 18h6v1h-6zM31 18h2v1h-2zM6 19h3v1h-3zM10 19h2v1h-2zM13 19h1v1h-1zM15 19h1v1h-1zM18 19h2v1h-2zM23 19h4v1h-4zM28 19h1v1h-1zM32 19h3v1h-3zM6 20h2v1h-2zM10 20h3v1h-3zM15 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM23 20h1v1h-1zM25 20h3v1h-3zM30 20h1v1h-1zM32 20h3v1h-3zM6 21h5v1h-5zM18 21h2v1h-2zM21 21h1v1h-1zM28 21h2v1h-2zM33 21h1v1h-1zM7 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM16 22h1v1h-1zM18 22h1v1h-1zM25 22h1v1h-1zM29 22h3v1h-3zM33 22h1v1h-1zM7 23h2v1h-2zM10 23h1v1h-1zM15 23h2v1h-2zM18 23h2v1h-2zM23 23h2v1h-2zM27 23h1v1h-1zM31 23h3v1h-3zM6 24h1v1h-1zM10 24h5v1h-5zM16 24h3v1h-3zM24 24h1v1h-1zM29 24h2v1h-2zM32 24h1v1h-1zM9 25h1v1h-1zM13 25h1v1h-1zM17 25h2v1h-2zM21 25h3v1h-3zM25 25h1v1h-1zM27 25h1v1h-1zM29 25h1v1h-1zM32 25h1v1h-1zM6 26h5v1h-5zM12 26h1v1h-1zM15 26h2v1h-2zM18 26h2v1h-2zM21 26h1v1h-1zM25 26h8v1h-8zM14 27h3v1h-3zM19 27h3v1h-3zM23 27h4v1h-4zM30 27h5v1h-5zM6 28h7v1h-7zM14 28h1v1h-1zM17 28h1v1h-1zM19 28h1v1h-1zM22 28h1v1h-1zM24 28h3v1h-3zM28 28h1v1h-1zM30 28h2v1h-2zM33 28h1v1h-1zM6 29h1v1h-1zM12 29h1v1h-1zM14 29h1v1h-1zM17 29h2v1h-2zM22 29h2v1h-2zM25 29h2v1h-2zM30 29h2v1h-2zM33 29h1v1h-1zM6 30h1v1h-1zM8 30h3v1h-3zM12 30h1v1h-1zM15 30h1v1h-1zM17 30h2v1h-2zM20 30h2v1h-2zM26 30h5v1h-5zM32 30h3v1h-3zM6 31h1v1h-1zM8 31h3v1h-3zM12 31h1v1h-1zM14 31h1v1h-1zM16 31h1v1h-1zM18 31h3v1h-3zM22 31h2v1h-2zM26 31h1v1h-1zM29 31h3v1h-3zM33 31h1v1h-1zM6 32h1v1h-1zM8 32h3v1h-3zM12 32h1v1h-1zM14 32h2v1h-2zM19 32h1v1h-1zM21 32h2v1h-2zM27 32h1v1h-1zM29 32h1v1h-1zM32 32h1v1h-1zM34 32h1v1h-1zM6 33h1v1h-1zM12 33h1v1h-1zM15 33h1v1h-1zM17 33h2v1h-2zM20 33h1v1h-1zM22 33h1v1h-1zM25 33h2v1h-2zM29 33h1v1h-1zM31 33h1v1h-1zM33 33h1v1h-1zM6 34h7v1h-7zM14 34h1v1h-1zM17 34h2v1h-2zM20 34h4v1h-4zM26 34h2v1h-2zM31 34h1v1h-1zM33 34h1v1h-1z"/></svg></div>
         <span>Escaneie ou toque<br>para chamar no WhatsApp</span>
       </a>
       </div>
@@ -520,10 +526,14 @@ window.addEventListener('pointermove',wake);wake();
 /* ------------------------------------------------------------------ */
 
 /* retrato: tenta isaggalvan.jpeg (mesma pasta/repositório); se não achar, desenha em ASCII */
-var phEl=$('ph'),phImg=$('phimg'),phCv=$('phcv'),faceImg=null;
+var faceImg=null,phs=document.querySelectorAll('.ph');
 function buildFace(){
-  if(!phEl.classList.contains('ascii'))return;
   if(!faceImg){faceImg=new Image();faceImg.onload=buildFace;faceImg.src=FACE;return;}
+  phs.forEach(drawFace);
+}
+function drawFace(phEl){
+  var phCv=phEl.querySelector('canvas');
+  if(!phEl.classList.contains('ascii'))return;
   var W=phEl.clientWidth,H=phEl.clientHeight;if(!W||!H||!faceImg.naturalWidth)return;
   var d=Math.min(window.devicePixelRatio||1,2),dark=TH==='dark';
   phCv.width=Math.round(W*d);phCv.height=Math.round(H*d);
@@ -544,15 +554,13 @@ function buildFace(){
     g.fillText(chh,(c+.5)*cw,(r+.54)*ch);
   }
 }
-phImg.onerror=function(){phEl.classList.add('ascii');buildFace();};
-phImg.onload=function(){phEl.classList.remove('ascii');};
-phImg.src='isaggalvan.jpeg';
+phs.forEach(function(ph){var im=ph.querySelector('img');im.onerror=function(){ph.classList.add('ascii');buildFace();};im.onload=function(){ph.classList.remove('ascii');};im.src='isaggalvan.jpeg';});
 /* painéis "Sobre" */
 var sideEl=$('side'),secs=document.querySelectorAll('#sobb .sec');
 function openSob(i){
   for(var k=0;k<secs.length;k++)secs[k].hidden=(k!==i);
   $('sobt').textContent=secs[i].getAttribute('data-t');$('sobb').scrollTop=0;
-  sideEl.classList.add('open');$('bot').classList.add('txt-open');
+  sideEl.classList.add('open');$('bot').classList.add('txt-open');setTimeout(buildFace,60);
 }
 function closeSob(){sideEl.classList.remove('open');$('bot').classList.remove('txt-open');setTimeout(buildFace,60);}
 document.querySelectorAll('.lk').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();openSob(+b.getAttribute('data-sob'));});});
