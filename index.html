@@ -59,6 +59,8 @@ var CONFIG={
     sobreMimFechar:'▼',
     detalhesAbrir:'+ detalhes ▲',
     detalhesFechar:'− detalhes ▼',
+    pausarAnimacoes:'Pausar animações (fica só o som)',
+    retomarAnimacoes:'Retomar animações',
     imagem:'IMAGEM',
     ascii:'ASCII'
   },
@@ -77,7 +79,9 @@ var CONFIG={
     noite:'Noite',
     dia:'Dia',
     somLigado:'Som ligado',
-    somDesligado:'Som desligado'
+    somDesligado:'Som desligado',
+    animacoesOff:'Animações pausadas',
+    animacoesOn:'Animações ativas'
   },
 
   textos:{ de:'de' },                               /* "5 de novembro de 2026" */
@@ -384,6 +388,12 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #bub.on #bubx{pointer-events:auto}
 #bub #bubx:hover{background:var(--yl);color:var(--bg)}
 html[data-theme=light] #bub{--bbo:#f6f3ea}
+#eco{position:fixed;top:10px;left:10px;z-index:30;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(var(--bgrgb),.55);color:var(--muted);opacity:.4;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:opacity .2s}
+#eco:hover,#eco:focus-visible{opacity:1}
+#eco svg{width:12px;height:12px;display:block}
+#eco .pl{display:none}html.eco #eco .ps{display:none}html.eco #eco .pl{display:block}
+html.eco #hint{animation:none}
+html.eco #bub.on{animation:bpop .55s cubic-bezier(.2,1.4,.4,1) forwards}
 @media(min-width:1000px) and (max-width:1199px){#handle{font-size:clamp(20px,1.95vw,50px)}}
 </style>
 </head>
@@ -467,6 +477,7 @@ html[data-theme=light] #bub{--bbo:#f6f3ea}
   </div>
   <div id="hint">Respire fundo.<br><small>Toque para começar a ouvir algo relaxante</small></div>
   <div id="bub" role="status" aria-live="polite"><div class="cl"><i class="cb c1"></i><i class="cb c2"></i><i class="cb c3"></i><i class="cb c4"></i><i class="cb c5"></i><i class="cb c6"></i><i class="cb c7"></i><i class="cb c8"></i><i class="cb c9"></i><i class="cb c10"></i><button id="bubx" type="button" aria-label="Fechar"><svg viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2 2l8 8M10 2l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg></button><span id="bubt"></span><a id="bubl" data-link="whatsapp" href="#" target="_blank" rel="noopener">Agende seu atendimento pelo WhatsApp</a></div><i class="tl t1"></i><i class="tl t2"></i><i class="tl t3"></i></div>
+  <button id="eco" type="button"><svg class="ps" viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="1.5" width="2.8" height="9" rx=".8"/><rect x="7.2" y="1.5" width="2.8" height="9" rx=".8"/></svg><svg class="pl" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7.5-4.5z"/></svg></button>
   <div id="toast"></div>
 </div>
 <script>
@@ -581,6 +592,7 @@ function rnd(a,b){return a+Math.random()*(b-a);}
 var TH='dark';
 try{var sv=localStorage.getItem('sala-tema');if(sv==='light'||sv==='dark')TH=sv;
   }catch(e){}
+var ECO=false;try{ECO=localStorage.getItem('sala-eco')==='1';}catch(e){}
 var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
 
 /* ------------------------------------------------------------------ */
@@ -671,18 +683,18 @@ function glow(x,y,r,rgb,a){
 }
 var prevT=0;
 function draw(now){
-  var t=(now-T0)/1000,dark=TH==='dark',dtk=prevT?Math.min(4,(t-prevT)*60):1;prevT=t;
+  var t=ECO?3:(now-T0)/1000,rd=reduce||ECO,dark=TH==='dark',dtk=prevT?Math.min(4,(t-prevT)*60):1;prevT=t;
   ctx.setTransform(dpr,0,0,dpr,0,0);
   ctx.fillStyle=dark?'#121110':'#ece8dc';ctx.fillRect(0,0,vw,vh);
   /* poeira flutuando */
   ctx.fillStyle=dark?'#f1eee2':'#2a2420';
   for(var i=0;i<dust.length;i++){var p=dust[i];
-    if(!reduce){p.y-=p.v*.016*dtk;if(p.y<-.02)p.y=1.02;}
+    if(!rd){p.y-=p.v*.016*dtk;if(p.y<-.02)p.y=1.02;}
     var x=(p.x+Math.sin(t*.3+p.p)*.012)*vw,y=p.y*vh;
     ctx.globalAlpha=p.a*(.6+.4*Math.sin(t*.8+p.p));ctx.fillRect(x,y,p.s*1.6,p.s*1.6);}
   ctx.globalAlpha=1;
   if(!art)return;
-  var s=reduce?1:1+.011*(.5+.5*Math.sin(t*.06)),tx=reduce?0:Math.sin(t*.037)*aw*.005,ty=reduce?0:Math.cos(t*.029)*ah*.003;
+  var s=rd?1:1+.011*(.5+.5*Math.sin(t*.06)),tx=rd?0:Math.sin(t*.037)*aw*.005,ty=rd?0:Math.cos(t*.029)*ah*.003;
   ctx.save();ctx.translate(ax+aw/2+tx,ay+ah/2+ty);ctx.scale(s,s);
   ctx.drawImage((MODE==='img'&&artImg)?artImg:art,-aw/2,-ah/2,aw,ah);
   if(!glowsOK&&MODE==='img'){ctx.restore();return;}
@@ -744,12 +756,12 @@ function impulse(sec,decay){
   return b;
 }
 function audioInit(ctxIn){
-  AC=ctxIn||new (window.AudioContext||window.webkitAudioContext)();
+  AC=ctxIn||new (window.AudioContext||window.webkitAudioContext)({latencyHint:'playback'});
   outG=AC.createGain();outG.gain.value=0;
   var comp=AC.createDynamicsCompressor();comp.threshold.value=-20;comp.ratio.value=3;comp.attack.value=.02;comp.release.value=.4;
   outG.connect(comp);comp.connect(AC.destination);
   var dry=AC.createGain();dry.gain.value=.75;dry.connect(outG);
-  var conv=AC.createConvolver();conv.buffer=impulse(3.4,2.4);
+  var conv=AC.createConvolver();conv.buffer=impulse(innerWidth<1000?2.4:3.4,2.4);
   var wet=AC.createGain();wet.gain.value=.85;conv.connect(wet);wet.connect(outG);
   bus=AC.createGain();bus.connect(dry);bus.connect(conv);
   var del=AC.createDelay(1.5);del.delayTime.value=.46;
@@ -814,6 +826,11 @@ setInterval(function(){if(document.hidden)pauseAudio();},1000);   /* garantia ex
 /*  interação: toque = som (1ª vez) / dia-noite; segurar = mudo        */
 /* ------------------------------------------------------------------ */
 var toastT=0;
+function setEco(on,save){ECO=on;lastDraw=0;document.documentElement.classList.toggle('eco',on);
+  var b=$('eco'),lb=on?CONFIG.botoes.retomarAnimacoes:CONFIG.botoes.pausarAnimacoes;b.title=lb;b.setAttribute('aria-label',lb);
+  if(save){try{localStorage.setItem('sala-eco',on?'1':'0');}catch(e){}toast(on?CONFIG.avisos.animacoesOff:CONFIG.avisos.animacoesOn);}}
+$('eco').addEventListener('click',function(e){e.stopPropagation();setEco(!ECO,true);});
+setEco(ECO,false);
 function toast(t){var e=$('toast');e.textContent=t;e.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){e.classList.remove('on');},1300);}
 function setTheme(t,save){
   TH=t;document.documentElement.setAttribute('data-theme',t);
@@ -938,7 +955,7 @@ var lastDraw=0;
 function frame(now){
   requestAnimationFrame(frame);
   if(document.hidden)return;                       /* aba oculta: não desenha */
-  var gap=(vw>=2300||vw<1000)?42:33;                        /* ~20 fps em celular e telas muito grandes, ~30 fps nas demais */
+  var gap=ECO?1000:((vw>=2300||vw<1000)?42:33);                        /* ~20 fps em celular e telas muito grandes, ~30 fps nas demais */
   if(now-lastDraw<gap)return;lastDraw=now;
   draw(now);tickClock();if(!frame.p||now-frame.p>500){frame.p=now;placeClk();}}
 document.documentElement.setAttribute('data-theme',TH);
