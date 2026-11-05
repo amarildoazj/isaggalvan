@@ -689,6 +689,12 @@ $('back').addEventListener('click',function(e){e.stopPropagation();closeSob();})
 document.querySelectorAll('.soc img').forEach(function(im){im.onload=function(){im.parentNode.classList.add('has');};im.src=im.getAttribute('data-src');});
 /* balão de boas-vindas sobre a foto, após o primeiro toque */
 var BUBTXT='Olá, seja bem vindo(a)! É um prazer enorme ter você aqui & sinta-se em casa.',bubDone=false,bubT=0,bubTy=0;
+function placeHint(){var h=$('hint');if(innerWidth<1000){h.style.top='';return;}
+var t=$('top').getBoundingClientRect().bottom,b=Math.min($('bot').getBoundingClientRect().top,innerHeight);
+var s=$('side');if(s){var st=s.getBoundingClientRect().top;if(st>0)b=Math.min(b,st);}
+h.style.zoom=1;var hh=h.offsetHeight,gap=b-t-34,z=Math.max(.55,Math.min(1,gap/hh));h.style.zoom=z;
+h.style.setProperty('top',(((t+b)/2+6)/z)+'px','important');}
+window.addEventListener('resize',placeHint);window.addEventListener('load',function(){placeHint();setTimeout(placeHint,400);});
 function placeBub(){
   var b=$('bub'),ph=document.querySelector('.view1 .ph');if(!ph)return;
   var r=ph.getBoundingClientRect(),w=b.offsetWidth,h=b.offsetHeight,vw=window.innerWidth;
