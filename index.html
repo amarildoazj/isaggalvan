@@ -126,10 +126,13 @@ body.idle{cursor:none}
   #card{display:block;padding:12px 14px 14px;flex:none}
 
   #hint{top:43%!important}
-  #bot{flex-direction:column;align-items:stretch;gap:10px;max-height:calc(100dvh - var(--clk,215px) - 14px);overflow-y:auto;overscroll-behavior:contain}
+  #bot{flex-direction:column;justify-content:flex-start;align-items:stretch;gap:10px;max-height:calc(100dvh - var(--clk,215px) - 14px);overflow-y:auto;overscroll-behavior:contain}
   #side{flex:none}
   #side,#side.open{width:100%;padding:10px 12px}
-  .view1{flex-direction:row;align-items:flex-start;gap:12px}
+  .view1{flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:10px 12px}
+  .pw{display:contents}
+  .view1 .nm{flex:0 0 calc(100% - clamp(96px,29vw,140px) - 12px);min-width:0}
+  .view1 .lk{flex:1 1 calc(50% - 6px);height:44px;min-width:0;width:auto;font-size:clamp(11.5px,3.2vw,15px);padding:.55em .7em}
   .ph{width:clamp(96px,29vw,140px);flex:none;margin-top:0}
   #side{padding-top:2px!important}
   .pw{flex:1;min-width:0;gap:7px}
@@ -207,8 +210,8 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div>
         <div class="pw">
           <div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · CRP 08/37885<span class="tcc">Especialista em TCC</span></div>
-          <button class="lk" type="button" data-sob="0">Sobre mim e meu trabalho <i>›</i></button>
-          <button class="lk" type="button" data-sob="1">Sobre a Terapia Cognitivo-Comportamental <i>›</i></button>
+          <button class="lk" type="button" data-sob="0">Sobre mim <i>›</i></button>
+          <button class="lk" type="button" data-sob="1">Sobre a terapia <i>›</i></button>
         </div>
       </div>
       <div id="sob">
