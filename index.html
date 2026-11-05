@@ -362,7 +362,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #snd svg,#snd2 svg,#thm svg,#thm2 svg{width:56%;height:56%;display:block}
 .snd .x{display:none}.snd.off .x{display:inline}.snd.off .w{display:none}
 #snd:active,#snd2:active,#thm:active,#thm2:active{transform:scale(.94)}
-#hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:14px 24px;border-radius:99px;max-width:88vw;text-align:center;
+#hint{position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);padding:14px 24px;border-radius:99px;max-width:88vw;text-align:center;
   background:rgba(var(--bgrgb),.82);border:1px solid var(--yl);color:var(--yl);font-size:clamp(15px,2vw,24px);font-weight:700;letter-spacing:.03em;
   box-shadow:0 6px 30px rgba(0,0,0,.4);pointer-events:auto;cursor:pointer;transition:opacity .5s;animation:hp 2s ease-in-out infinite}
 @keyframes hp{50%{box-shadow:0 6px 30px rgba(0,0,0,.4),0 0 0 8px rgba(var(--bgrgb),0),0 0 22px var(--yl)}}
@@ -402,14 +402,15 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 #bub.on #bubx{pointer-events:auto}
 #bub #bubx:hover{background:var(--yl);color:var(--bg)}
 html[data-theme=light] #bub{--bbo:#f6f3ea}
+#side,#card{position:relative;z-index:10}   /* os cartões ficam por cima do "Respire fundo" */
 .view1 .nm{position:relative}
 .bunbtn{position:absolute;right:0;bottom:0;width:34px;height:34px;border-radius:50%;border:2px solid var(--yl);background:var(--yl);color:var(--bg);display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;animation:bpop .5s cubic-bezier(.2,1.4,.4,1) both;transform:scale(0);box-shadow:0 2px 12px rgba(0,0,0,.35)}
 html[data-theme=light] .bunbtn{color:#fff}
 .bunbtn svg{width:70%;height:70%;display:block}
-@media(min-width:1000px){.bunbtn{width:28px;height:28px;bottom:-10px;right:2px}}.bunbtn .dot{fill:var(--yl)}
+@media(min-width:1000px){.bunbtn{width:30px;height:30px;right:8px;bottom:8px}}.bunbtn .dot{fill:var(--yl)}
 #bunbox{position:fixed;z-index:25;overflow:hidden;pointer-events:none;border-radius:22px}
 #bunny{position:absolute;left:0;bottom:6px;margin:0;font:700 15px/1.05 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;white-space:pre;color:var(--ink);text-shadow:0 1px 4px rgba(0,0,0,.45);will-change:transform}
-#bunsay{position:absolute;bottom:62px;left:0;padding:5px 11px;border-radius:14px;background:var(--bbo,#171513);border:1.5px solid #86538C;color:#fff;font-size:13px;white-space:nowrap;opacity:0;transition:opacity .25s;will-change:transform}
+#bunsay{position:absolute;bottom:62px;left:0;padding:5px 11px;border-radius:14px;background:var(--bbo,#171513);border:1.5px solid #86538C;color:#fff;font-size:13px;line-height:1.35;white-space:normal;text-wrap:balance;text-align:center;max-width:calc(100% - 12px);box-sizing:border-box;opacity:0;transition:opacity .25s;will-change:transform}
 html[data-theme=light] #bunsay{--bbo:#f6f3ea;color:var(--ink)}
 html[data-theme=light] #bunny{color:#fff;text-shadow:1px 0 0 #2a2420,-1px 0 0 #2a2420,0 1px 0 #2a2420,0 -1px 0 #2a2420,0 2px 5px rgba(0,0,0,.45)}
 #eco{position:fixed;top:10px;left:10px;z-index:30;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(var(--bgrgb),.55);color:var(--muted);opacity:.4;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;transition:opacity .2s}
@@ -963,17 +964,19 @@ document.querySelectorAll('.soc img').forEach(function(im){im.onload=function(){
   var WALK=[' (\\_/)\n (o.o)\n (")_(")',' (\\_/)\n (o.o)\n (")(")'],
       WAVE=[' (\\_/)\n (o.o)/\n (")_(")',' (\\_/)\n (o.o)|\n (")_(")',' (\\_/)\n (o.o)\\\n (")_(")',' (\\_/)\n (o.o)|\n (")_(")'];
   function showBtn(){
-    if(btn)return;var nm=document.querySelector('.view1 .nm');if(!nm)return;
+    if(btn)return;var nm=host();if(!nm)return;
     btn=document.createElement('button');btn.type='button';btn.className='bunbtn';btn.title=CONFIG.coelho.botao;btn.setAttribute('aria-label',CONFIG.coelho.botao);
     btn.innerHTML='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="8.8" cy="6.2" rx="2.1" ry="5.2" transform="rotate(-8 8.8 6.2)"/><ellipse cx="15.2" cy="6.2" rx="2.1" ry="5.2" transform="rotate(8 15.2 6.2)"/><circle cx="12" cy="15.4" r="6.4"/><circle class="dot" cx="9.7" cy="14.6" r="1"/><circle class="dot" cx="14.3" cy="14.6" r="1"/></svg>';
     btn.addEventListener('click',function(e){e.stopPropagation();run();});
     nm.appendChild(btn);
   }
+  function host(){return document.querySelector(innerWidth>=1000?'.view1 .ph':'.view1 .nm');}
+  window.addEventListener('resize',function(){if(btn){var h=host();if(h&&btn.parentNode!==h)h.appendChild(btn);}});
   function hideBtn(){if(btn){btn.remove();btn=null;}}
   function run(){
     if(busy)return;busy=true;window.__bunBusy=true;
     hideBubble();                                   /* fecha o balão de boas-vindas */
-    var ref=innerWidth>=1000?$('side'):$('dock'),r=ref.getBoundingClientRect(),BH=100;
+    var ref=innerWidth>=1000?$('side'):$('dock'),r=ref.getBoundingClientRect(),BH=124;
     var box=document.createElement('div');box.id='bunbox';
     box.style.cssText='left:'+r.left+'px;top:'+(r.top-BH+2)+'px;width:'+r.width+'px;height:'+BH+'px;border-radius:0';
     var pre=document.createElement('pre');pre.id='bunny';pre.textContent=WALK[0];
