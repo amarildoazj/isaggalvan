@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>@isaggalvan · Psicoterapia</title>
 <style>
-:root{--ig:#b894ff;--wa:#3ddc84;--bg:#121110;--bgrgb:18,17,16;--ink:#f1eee2;--muted:#b9b3a3;--accent:#e2b565;--card:rgba(24,22,19,.62);--line:rgba(241,238,226,.14)}
-html[data-theme=light]{--ig:#6a2fd0;--wa:#12843f;--bg:#ece8dc;--bgrgb:236,232,220;--ink:#2a2420;--muted:#5d554a;--accent:#9a6416;--card:rgba(250,247,238,.72);--line:rgba(42,36,32,.16)}
+:root{--gray:#9a958a;--gbtn:#8d887d;--gbtnink:#121110;--ig:#b894ff;--wa:#3ddc84;--bg:#121110;--bgrgb:18,17,16;--ink:#f1eee2;--muted:#b9b3a3;--accent:#e2b565;--card:rgba(24,22,19,.62);--line:rgba(241,238,226,.14)}
+html[data-theme=light]{--gray:#5d554a;--gbtn:#6b645a;--gbtnink:#ece8dc;--ig:#6a2fd0;--wa:#12843f;--bg:#ece8dc;--bgrgb:236,232,220;--ink:#2a2420;--muted:#5d554a;--accent:#9a6416;--card:rgba(250,247,238,.72);--line:rgba(42,36,32,.16)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);overflow:hidden;
@@ -56,6 +56,13 @@ body.idle{cursor:none}
 #bot{align-items:flex-end;gap:clamp(12px,1.6vw,24px)}
 #card{flex:1 1 auto;min-width:0}
 #sm{display:none}
+.fn{width:100%;text-align:center;font-weight:700;color:var(--accent);font-size:clamp(13px,1.2vw,24px);letter-spacing:.01em;line-height:1.2;margin-bottom:12px;white-space:nowrap}
+#side.open .fn{display:none}
+.view1 .nm b{display:none}
+.lk,#tg .m,#sm span,.lk i{color:var(--accent)!important}
+.lk,#tg .m,#tg .m i,#sm span{font-weight:400!important}
+.snd,.thm,#snd,#snd2,#thm,#thm2{background:var(--accent)!important;color:var(--bg)!important;border-color:var(--accent)!important}
+#dock{display:contents}
 #side{flex:none;width:clamp(260px,21vw,400px);padding:clamp(12px,1.2vw,18px);border-radius:22px;border:1px solid var(--line);background:var(--card);
   -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:width .35s}
 #side.open{width:clamp(340px,34vw,620px)}
@@ -64,20 +71,21 @@ body.idle{cursor:none}
 .ph{position:relative;width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;background:rgba(var(--bgrgb),.7);border:1px solid var(--line)}
 .ph img,.ph canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .ph canvas{display:none}.ph.ascii canvas{display:block}.ph.ascii img{display:none}
-.nm{text-align:center;font-size:clamp(11px,.95vw,16px);letter-spacing:.04em;color:var(--muted);line-height:1.4}
+.nm{text-align:center;font-size:clamp(11px,.95vw,16px);letter-spacing:.04em;color:var(--gray);line-height:1.4}
 .nm b{display:block;color:var(--accent);font-size:1.12em}
 .sph{display:flex;flex-direction:column;align-items:center;gap:10px;margin:2px 0 16px}
 .sph .ph{width:clamp(130px,15vw,230px);border-radius:18px}
 .sph .nm{text-align:center}
+.tcc{display:block}
 .lk{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;font:inherit;font-weight:700;color:var(--ink);
   font-size:clamp(12.5px,1.05vw,18px);line-height:1.3;padding:.7em 1em;border-radius:12px;border:1px solid var(--line);background:rgba(var(--bgrgb),.45);cursor:pointer}
 .lk:hover{border-color:var(--accent)}.lk i{font-style:normal;color:var(--accent);flex:none}
 #sob{display:none;flex-direction:column;gap:10px}
 #side.open #sob{display:flex}#side.open .view1{display:none}
 #sobh{display:flex;align-items:center;gap:12px}
-#back{flex:none;font:inherit;font-weight:700;font-size:clamp(12px,1vw,16px);padding:.45em .9em;border-radius:99px;border:1px solid var(--line);background:rgba(var(--bgrgb),.45);color:var(--ink);cursor:pointer}
+#back{order:2;margin-left:auto;flex:none;font:inherit;font-weight:700;font-size:clamp(12px,1vw,16px);padding:.45em .9em;border-radius:99px;border:1px solid var(--line);background:rgba(var(--bgrgb),.45);color:var(--ink);cursor:pointer}
 #sobt{font-weight:700;color:var(--accent);font-size:clamp(14px,1.2vw,21px);line-height:1.25}
-#sobb{overflow-y:auto;overscroll-behavior:contain;max-height:max(160px,calc(100dvh - 400px));padding-right:6px;line-height:1.65;font-size:clamp(13px,1.05vw,18px);
+#sobb{overflow-y:auto;overscroll-behavior:contain;max-height:max(140px,calc(100dvh - var(--clk,290px) - 160px));padding-right:6px;line-height:1.65;font-size:clamp(13px,1.05vw,18px);
   -webkit-user-select:text;user-select:text}
 #sobb h4{margin:1.1em 0 .4em;font-size:1.05em;color:var(--accent)}#sobb h4:first-child{margin-top:0}
 #sobb p{margin:.55em 0}#sobb ul{margin:.5em 0;padding-left:1.2em}#sobb li{margin:.3em 0}
@@ -88,6 +96,19 @@ body.idle{cursor:none}
   display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.35)}
 #contact a.pin:hover{text-decoration:none}.pin svg{width:56%;height:56%;display:block}
 #contact a.ad{color:var(--muted)}#contact a.ad b{color:var(--ink)}
+@media(min-width:1000px) and (max-height:820px){
+  #card{padding:16px 22px;gap:12px}
+  .qr{width:clamp(92px,17vh,230px)}
+  #handle{font-size:clamp(24px,5.2vh,64px)}
+  #role{font-size:clamp(14px,2.8vh,34px)}
+  #tag{font-size:clamp(12px,2.2vh,26px)}
+  #mod{font-size:clamp(11px,1.9vh,22px);margin-top:.5em}
+  #contact{font-size:clamp(11px,1.9vh,22px);padding-top:8px}
+  #snd,#thm{width:clamp(36px,5.2vh,70px);height:clamp(36px,5.2vh,70px)}
+  #side{padding:12px}
+  .view1{gap:8px}
+  .ph{max-height:34vh;aspect-ratio:auto;height:34vh}
+}
 #tgrow{display:none}
 @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 @media(min-width:1000px){
@@ -102,17 +123,19 @@ body.idle{cursor:none}
   #contact{font-size:clamp(13px,1.1vw,22px)}
 }
 @media(max-width:999px){
-  #card{display:block;max-height:calc(100dvh - 215px);overflow-y:auto;overscroll-behavior:contain;padding:12px 14px 14px}
+  #card{display:block;padding:12px 14px 14px;flex:none}
 
   #hint{top:43%!important}
-  #bot{flex-direction:column;align-items:stretch;gap:10px}
+  #bot{flex-direction:column;align-items:stretch;gap:10px;max-height:calc(100dvh - var(--clk,215px) - 14px);overflow-y:auto;overscroll-behavior:contain}
+  #side{flex:none}
   #side,#side.open{width:100%;padding:10px 12px}
-  .view1{flex-direction:row;align-items:center;gap:12px}
-  .ph{width:clamp(84px,25vw,124px);flex:none}
+  .view1{flex-direction:row;align-items:flex-start;gap:12px}
+  .ph{width:clamp(96px,29vw,140px);flex:none;margin-top:0}
+  #side{padding-top:2px!important}
   .pw{flex:1;min-width:0;gap:7px}
   .nm{text-align:left;font-size:clamp(10.5px,2.9vw,13px)}
   .lk{font-size:clamp(12px,3.4vw,16px);padding:.55em .8em}
-  #sobb{max-height:max(140px,calc(100dvh - 300px))}
+  #sobb{max-height:max(120px,calc(100dvh - var(--clk,215px) - 110px))}
   #sm{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;text-align:left;font:inherit;color:var(--ink);cursor:pointer;
     padding:12px 14px 12px 18px;border-radius:22px;border:1px solid var(--line);background:var(--card);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
   #sm:active{transform:scale(.98)}
@@ -120,20 +143,19 @@ body.idle{cursor:none}
   #sm span{flex:none;font-size:clamp(13px,3.6vw,16px);font-weight:700;color:var(--ink)}
   #sm .close{font-size:1.25em;padding:0 .3em}
   #sm i{font-style:normal}#sm .close{display:none}#bot.sm-open #sm .close{display:inline}#bot.sm-open #sm .open{display:none}
-  .view1 .nm b{display:none}
-  #side{display:none}#bot.sm-open #side{display:block}
-  #bot.info-open #sm,#bot.txt-open #sm{display:none}
-  #bot.info-open #side{display:none}
+  #sm{display:none!important}
   #bot.txt-open #card{display:none}
   #tgrow{display:flex;align-items:center;gap:12px}
   #tg{flex:1;min-width:0;text-align:left;background:none;border:0;padding:2px 0;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:3px}
-  #tg .h{font-size:clamp(22px,6.6vw,30px);font-weight:700;color:var(--accent)}
-  #tg .r{font-size:clamp(13px,3.7vw,17px);font-weight:700}
-  #tg .m{font-size:clamp(11px,3.1vw,14px);color:var(--muted);letter-spacing:.02em}
+  #tg .h,#tg .r{display:none}
+  #tg .m{font-size:clamp(15px,4.4vw,19px);font-weight:700;letter-spacing:.02em}
+  .fn{display:none}
+  .view1 .nm b{display:block;font-size:clamp(19px,5.6vw,24px);line-height:1.15;margin-bottom:6px;letter-spacing:.01em}
+  .tcc{display:block}
   #tg i{font-style:normal}#tg .close{display:none}#card.open #tg .close{display:inline}#card.open #tg .open{display:none}
   #qrs .ctrls{display:none!important}
   #snd2,#thm2{width:40px;height:40px}
-  #tgrow .ctrls{gap:8px}
+  #tgrow .ctrls{gap:8px;flex-direction:row}
   .hl{display:none}
   #info{margin-top:0}
   #card:not(.open) #info,#card:not(.open) #qrs,#card:not(.open) #contact{display:none}
@@ -142,6 +164,10 @@ body.idle{cursor:none}
   #qrs{margin-top:14px;justify-content:center;gap:10px}
   .qr{width:clamp(110px,38vw,170px)}
   #contact{margin-top:14px}
+  #dock{display:block;padding:10px 12px 12px;border-radius:22px;border:1px solid var(--line);background:var(--card);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
+  #side,#card{border:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-radius:0}
+  #side,#side.open{padding:0}
+  #card{margin-top:12px;padding:12px 2px 2px;border-top:1px solid var(--line)}
 }
 html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
 .ctrls{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,1vw,14px);flex:none}
@@ -173,12 +199,14 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
   <div class="fade" id="gt"></div><div class="fade" id="gb"></div>
   <div id="top" aria-label="Hora e data"><div id="hmsw"><div id="hms"></div><button id="mt" class="mt" data-m="ascii" type="button" aria-label="Alternar entre imagem e ASCII"><span data-m="img">IMAGEM</span><i>|</i><span data-m="ascii">ASCII</span></button></div><div id="wd"></div><div id="dt"></div></div>
   <div id="bot">
-    <button id="sm" type="button" aria-expanded="false"><b>Isadora G. Galvan</b><span><i class="open">Sobre mim ▲</i><i class="close">▼</i></span></button>
+    <button id="sm" type="button" aria-expanded="false"><b>Isadora Gagliotto Galvan</b><span><i class="open">Sobre mim ▲</i><i class="close">▼</i></span></button>
+    <div id="dock">
     <div id="side">
+      <div class="fn">Isadora Gagliotto Galvan</div>
       <div class="view1">
-        <div class="ph"><img alt="Isadora G. Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div>
+        <div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div>
         <div class="pw">
-          <div class="nm"><b>Isadora G. Galvan</b>Psicóloga Clínica · CRP 08/37885</div>
+          <div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · CRP 08/37885<span class="tcc">Especialista em TCC</span></div>
           <button class="lk" type="button" data-sob="0">Sobre mim e meu trabalho <i>›</i></button>
           <button class="lk" type="button" data-sob="1">Sobre a Terapia Cognitivo-Comportamental <i>›</i></button>
         </div>
@@ -187,7 +215,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <div id="sobh"><button id="back" type="button">← Voltar</button><div id="sobt"></div></div>
         <div id="sobb">
           <div class="sec" data-t="Sobre mim e meu trabalho" hidden>
-            <div class="sph"><div class="ph"><img alt="Isadora G. Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora G. Galvan</b>Psicóloga Clínica · CRP 08/37885</div></div>
+            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · CRP 08/37885<span class="tcc">Especialista em TCC</span></div></div>
             <p>Eu sou a Isa, Psicóloga Clínica (CRP 08/37885), sou formada em Psicologia, pós graduada em Terapia Cognitivo-Comportamental e Neuropsicopedagogia.</p>
             <p>Atuo na área de saúde pública e clínica.</p>
             <p>Estar disposto(a) para iniciar a psicoterapia requer coragem para a encarar a si mesmo, comprometimento e responsabilidade com o seu processo.</p>
@@ -195,7 +223,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
             <p>Podem ser realizados de forma presencial e on-line!<br>E fique tranquilo(a), atendimentos on-line apresentam a mesma eficácia de atendimentos presenciais.</p>
           </div>
           <div class="sec" data-t="Sobre a Terapia Cognitivo-Comportamental" hidden>
-            <div class="sph"><div class="ph"><img alt="Isadora G. Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora G. Galvan</b>Psicóloga Clínica · CRP 08/37885</div></div>
+            <div class="sph"><div class="ph"><img alt="Isadora Gagliotto Galvan"><canvas aria-label="Retrato em ASCII"></canvas></div><div class="nm"><b>Isadora Gagliotto Galvan</b>Psicóloga Clínica · CRP 08/37885<span class="tcc">Especialista em TCC</span></div></div>
             <h4>Sobre Terapias Cognitivo-Comportamentais...</h4>
             <blockquote>“As reações das pessoas passam a fazer sentido depois que sabemos o que elas estavam pensando. Não é a situação em si que determina o que as pessoas sentem ou fazem, mas como elas interpretam (pensam sobre) uma situação.”</blockquote>
             <cite>— J. Beck</cite>
@@ -226,7 +254,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <button id="tg" type="button" aria-expanded="false" aria-controls="card">
           <b class="h">@isaggalvan</b>
           <span class="r">Psicóloga &amp; Especialista em TCC</span>
-          <span class="m"><i class="open">Toque para mais informações ▲</i><i class="close">Toque para fechar ▼</i></span>
+          <span class="m"><i class="open">Contatos ▲</i><i class="close">Contatos ▼</i></span>
         </button>
         <div class="ctrls">
         <button id="snd2" class="snd" type="button" aria-label="Som" title="Som"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z" fill="currentColor"/><g class="w"><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a8 8 0 0 1 0 11"/></g><g class="x"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg></button>
@@ -263,6 +291,7 @@ html[data-theme=dark] .thm .sun,html[data-theme=light] .thm .moon{display:none}
         <div class="adw"><a class="pin" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" aria-label="Abrir no Google Maps" title="Abrir no Google Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-6.8-6.1-6.8-11.2a6.8 6.8 0 0 1 13.6 0c0 5.1-6.8 11.2-6.8 11.2z" fill="currentColor"/><circle cx="12" cy="10.3" r="2.5" fill="#fff" stroke="none"/></svg></a><a class="ad" href="https://www.google.com/maps/place/Psic%C3%B3loga+Isadora+G.+Galvan+%7C+Terapia+Cognitivo-Comportamental+(TCC)/@-26.0836523,-53.0518205,17z/data=!3m1!4b1!4m6!3m5!1s0x94f0731d0df9d169:0xc73078e286754ff0!8m2!3d-26.0836523!4d-53.0518205!16s%2Fg%2F11w1n51_qf?entry=tts&amp;g_ep=EgoyMDI1MTEyMy4xIPu8ASoASAFQAw%3D%3D&amp;skid=a074f352-c40e-4e16-9d20-b363df077e7d" target="_blank" rel="noopener" title="Abrir no Google Maps"><b>Edifício Office One</b><br>Rua Octaviano Teixeira dos Santos, 1561<br>Francisco Beltrão-PR</a></div>
         <div class="ct"><a href="tel:+5546988009738">Telefone: (46) 988009738</a><a href="mailto:isadoraggalvan@hotmail.com">E-mail: isadoraggalvan@hotmail.com</a></div>
       </div>
+    </div>
     </div>
   </div>
   <div id="hint">Respire fundo.<br><small>Toque para começar a ouvir algo relaxante</small></div>
@@ -522,7 +551,7 @@ function toggleTheme(){setTheme(TH==='dark'?'light':'dark',true);toast(TH==='dar
 function toggleMute(){if(!audioOn){audioStart();return;}if(AC.state!=='running'){resumeAC();return;}setMute(!muted);toast(muted?'Som desligado':'Som ligado');syncUI();}
 ['thm','thm2'].forEach(function(i){$(i).addEventListener('click',function(e){e.stopPropagation();toggleTheme();});});
 ['snd','snd2'].forEach(function(i){$(i).addEventListener('click',function(e){e.stopPropagation();toggleMute();});});
-$('tg').addEventListener('click',function(e){e.stopPropagation();var c=$('card'),o=!c.classList.contains('open');c.classList.toggle('open',o);$('bot').classList.toggle('info-open',o);$('tg').setAttribute('aria-expanded',o);if(o)c.scrollTop=0;});
+$('tg').addEventListener('click',function(e){e.stopPropagation();var c=$('card'),o=!c.classList.contains('open');c.classList.toggle('open',o);$('bot').classList.toggle('info-open',o);if(o)setTimeout(function(){$('bot').scrollTo({top:Math.max(0,c.offsetTop-12),behavior:'smooth'});},60);$('tg').setAttribute('aria-expanded',o);if(o)c.scrollTop=0;});
 function toggleFull(){try{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen();}catch(e){}}
 var lp=0,lpDone=false,ptrOnLink=false;
 $('app').addEventListener('pointerdown',function(e){
@@ -581,6 +610,7 @@ var userMode=false;
 phs.forEach(function(ph){ph.classList.add('ascii');ph.querySelector('img').src=FACE;});
 var fp=new Image();fp.onload=function(){phs.forEach(function(ph){ph.querySelector('img').src='isaggalvan.jpeg';});if(!userMode)setMode('img');};
 fp.src='isaggalvan.jpeg';
+buildFace();
 /* painéis "Sobre" */
 var sideEl=$('side'),secs=document.querySelectorAll('#sobb .sec');
 function openSob(i){
@@ -593,9 +623,10 @@ document.querySelectorAll('.lk').forEach(function(b){b.addEventListener('click',
 $('sm').addEventListener('click',function(e){e.stopPropagation();var o=!$('bot').classList.contains('sm-open');$('bot').classList.toggle('sm-open',o);$('sm').setAttribute('aria-expanded',o);setTimeout(buildFace,60);});
 $('back').addEventListener('click',function(e){e.stopPropagation();closeSob();});
 var rsT=0;
-function rebuild(){layout();initDust();buildArt();buildFace();}
+function placeClk(){var b=$('top').getBoundingClientRect().bottom;document.documentElement.style.setProperty('--clk',Math.round(b)+'px');}
+function rebuild(){placeClk();layout();initDust();buildArt();buildFace();}
 window.addEventListener('resize',function(){clearTimeout(rsT);rsT=setTimeout(rebuild,160);});
-function frame(now){draw(now);tickClock();requestAnimationFrame(frame);}
+function frame(now){draw(now);tickClock();if(!frame.p||now-frame.p>500){frame.p=now;placeClk();}requestAnimationFrame(frame);}
 document.documentElement.setAttribute('data-theme',TH);
 layout();initDust();initSpark();tickClock();
 img.onload=function(){buildArt();};
