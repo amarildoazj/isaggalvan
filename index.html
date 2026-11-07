@@ -844,7 +844,17 @@ function sched(){
     bell(n,bellT,rnd(.012,.032));
     bellT+=rnd(.9,2.8);}
 }
+/* iPhone: o interruptor de silencioso corta o WebAudio; tocar um <audio> mudo em loop faz o som sair como mídia */
+var silEl=null;
+function destravaSom(){try{if(silEl){silEl.play();return;}
+  var n=8000,b=new Uint8Array(44+n),v=new DataView(b.buffer),W=function(o,s){for(var i=0;i<s.length;i++)b[o+i]=s.charCodeAt(i);};
+  W(0,'RIFF');v.setUint32(4,36+n,true);W(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,8000,true);v.setUint32(28,8000,true);v.setUint16(32,1,true);v.setUint16(34,8,true);W(36,'data');v.setUint32(40,n,true);
+  for(var i=0;i<n;i++)b[44+i]=128;
+  var bin='';for(i=0;i<b.length;i++)bin+=String.fromCharCode(b[i]);
+  silEl=new Audio('data:audio/wav;base64,'+btoa(bin));silEl.loop=true;silEl.setAttribute('playsinline','');silEl.play();
+  if(navigator.audioSession)navigator.audioSession.type='playback';}catch(e){}}
 function audioStart(){
+  destravaSom();
   if(audioOn){resumeAC();return;}
   try{audioInit();}catch(e){return;}
   audioOn=true;tStart=AC.currentTime+.05;nextChord=tStart;bellT=tStart+.5;chordIdx=0;
@@ -859,8 +869,8 @@ setInterval(syncUI,400);
 function setMute(m){muted=m;if(AC&&audioOn){outG.gain.cancelScheduledValues(AC.currentTime);
   outG.gain.setValueAtTime(outG.gain.value,AC.currentTime);outG.gain.linearRampToValueAtTime(muted?0:LEVEL,AC.currentTime+.6);}}
 /* sai do navegador / troca de app / bloqueia a tela -> para o som */
-function pauseAudio(){try{if(AC&&AC.state==='running')AC.suspend();}catch(e){}}
-function wakeAudio(){try{if(AC&&audioOn&&!document.hidden&&AC.state!=='running')AC.resume();}catch(e){}}
+function pauseAudio(){try{if(silEl)silEl.pause();}catch(e){}try{if(AC&&AC.state==='running')AC.suspend();}catch(e){}}
+function wakeAudio(){try{if(silEl&&audioOn&&!document.hidden)silEl.play();}catch(e){}try{if(AC&&audioOn&&!document.hidden&&AC.state!=='running')AC.resume();}catch(e){}}
 document.addEventListener('visibilitychange',function(){if(document.hidden)pauseAudio();else wakeAudio();});
 window.addEventListener('pagehide',pauseAudio);
 window.addEventListener('pageshow',wakeAudio);
