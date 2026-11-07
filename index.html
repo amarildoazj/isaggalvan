@@ -443,7 +443,7 @@ html[data-theme=light] #tg{color:#000}
 #bub.izq .t3{left:-50px;bottom:auto;top:calc(50% - 4px)}
 #hint{transition:transform .7s cubic-bezier(.4,0,.2,1),opacity .5s!important;will-change:transform;animation:none!important}
 #hintcap{transition:opacity .24s ease!important;will-change:opacity}
-#bub{will-change:transform,opacity}.view1 .ph{cursor:pointer}@media(min-width:1000px){#tgrow{display:none!important}}
+#bub{will-change:transform,opacity}.view1 .ph{cursor:pointer}@media(min-width:1000px){#tg,#tgrow .soc:not(#anim){display:none!important}}
 #bal{position:fixed;top:12px;left:12px;z-index:41;width:28px;height:28px;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,122,217,.6);color:#000;border:1.5px solid #000;box-shadow:0 0 8px 2px rgba(255,90,200,.65),0 0 20px 4px rgba(255,60,170,.35);backdrop-filter:blur(3px)}
 #bal svg{width:62%;height:62%;fill:none;stroke:#000;stroke-width:1.8;stroke-linecap:round}
 html.mae #bal,html[data-theme=light] #bal{display:none}
@@ -463,6 +463,14 @@ html.bal #top,html.bal #bot,html.bal #thm3,html.bal #bub,html.bal .dots{opacity:
 html.bal #stage .sl img{animation:balZoom .968s ease-in-out infinite}
 @keyframes balZoom{50%{transform:scale(1.05)}}
 @media (prefers-reduced-motion:reduce){#balfx .fl{animation-duration:1.4s}}
+
+#anim svg .sl{display:none}
+html.sem-anim #anim svg .sl{display:block}
+html.sem-anim *,html.sem-anim *::before,html.sem-anim *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html.sem-anim #bub.on{opacity:1!important;transform:none!important;visibility:visible!important}
+html.sem-anim #bub.off{display:none!important}
+html.sem-anim #bal{display:none!important}
+html.pausa *,html.pausa *::before,html.pausa *::after{animation-play-state:paused!important}
 </style>
 </head>
 <body>
@@ -483,7 +491,7 @@ html.bal #stage .sl img{animation:balZoom .968s ease-in-out infinite}
         </div>
       </div>
     </div>
-    <div id="card" class="open collapsed"><div id="tgrow"><button id="tg" type="button" aria-expanded="false">+ detalhes</button><div class="ctrls"><a class="soc ig" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M9 3.5 7.4 5.5H4.5A2.5 2.5 0 0 0 2 8v9.5A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5V8a2.5 2.5 0 0 0-2.5-2.5h-2.9L15 3.5H9zm3 4.5a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 2a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2z" fill-rule="evenodd"/></svg></span></a><a class="soc wa" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10.3" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span></a></div></div>
+    <div id="card" class="open collapsed"><div id="tgrow"><button id="tg" type="button" aria-expanded="false">+ detalhes</button><div class="ctrls"><a class="soc ig" data-link="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M9 3.5 7.4 5.5H4.5A2.5 2.5 0 0 0 2 8v9.5A2.5 2.5 0 0 0 4.5 20h15a2.5 2.5 0 0 0 2.5-2.5V8a2.5 2.5 0 0 0-2.5-2.5h-2.9L15 3.5H9zm3 4.5a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 2a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2z" fill-rule="evenodd"/></svg></span></a><a class="soc wa" data-link="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><span class="fb"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10.3" fill="none" stroke="currentColor" stroke-width="1.7"/><path transform="translate(12 12) scale(.56) translate(-12 -12)" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></span></a><button id="anim" class="soc" type="button" aria-pressed="false" aria-label="Desativar animações" title="Desativar animações"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5l1.9 5.6L19.5 12l-5.6 1.9L12 19.5l-1.9-5.6L4.5 12l5.6-1.9z"/><path class="sl" d="M4 20L20 4"/></svg></button></div></div>
       <div id="info">
         <div class="hl">
           <div id="handle"></div>
@@ -953,7 +961,7 @@ requestAnimationFrame(frame);
   var dn=false,sx=0,sl=0;trk.addEventListener('mousedown',function(e){dn=true;sx=e.clientX;sl=trk.scrollLeft;trk.style.scrollSnapType='none';});
   window.addEventListener('mouseup',function(){if(!dn)return;dn=false;trk.style.scrollSnapType='';go(Math.round(trk.scrollLeft/(trk.clientWidth||1)),true);});
   window.addEventListener('mousemove',function(e){if(dn)trk.scrollLeft=sl-(e.clientX-sx);});
-  setInterval(function(){if(document.hidden||Date.now()<pause||slides.length<2)return;go(idx+1);},4200);
+  setInterval(function(){if(document.hidden||window.__semAnim||Date.now()<pause||slides.length<2)return;go(idx+1);},4200);
   window.addEventListener('resize',function(){trk.scrollLeft=idx*trk.clientWidth;});
   /* carrega as fotos (tenta cada formato de CONFIG.extensoes) */
   function carregar(list){
@@ -993,11 +1001,23 @@ desk();window.addEventListener('resize',desk);
 b.addEventListener('click',function(){var f=c.classList.toggle('collapsed');document.documentElement.classList.toggle('det',!f);try{window.__balTg(!f);}catch(x){}b.textContent=f?'+ detalhes':'− detalhes';b.setAttribute('aria-expanded',f?'false':'true');var bt=document.getElementById('bot');c.classList.remove('abrindo');if(!f){void c.offsetWidth;c.classList.add('abrindo');if(bt)setTimeout(function(){bt.scrollTo({top:bt.scrollHeight,behavior:'smooth'});},30);}});})();
 </script><script>
 (function(){var b=document.getElementById('bal'),H=document.documentElement;if(!b)return;
-function tog(on){H.classList.toggle('bal',on===undefined?!H.classList.contains('bal'):on);}
+function tog(on){if(window.__semAnim&&on!==false)return;H.classList.toggle('bal',on===undefined?!H.classList.contains('bal'):on);}
 b.addEventListener('click',function(e){e.stopPropagation();tog();});
 b.addEventListener('pointerdown',function(e){e.stopPropagation();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')tog(false);});
 window.__balada=tog;
 new MutationObserver(function(){if(H.getAttribute('data-theme')==='light')tog(false);}).observe(H,{attributes:true,attributeFilter:['data-theme']});})();
+</script><script>
+(function(){var H=document.documentElement,b=document.getElementById('anim');
+function set(on,save){H.classList.toggle('sem-anim',on);window.__semAnim=on;
+  if(b){b.setAttribute('aria-pressed',on?'true':'false');b.title=on?'Ativar animações':'Desativar animações';b.setAttribute('aria-label',b.title);}
+  if(on&&window.__balada)window.__balada(false);
+  if(save){try{localStorage.setItem('dj-anim',on?'off':'on');}catch(e){}}}
+if(b){b.addEventListener('click',function(e){e.stopPropagation();set(!H.classList.contains('sem-anim'),true);});b.addEventListener('pointerdown',function(e){e.stopPropagation();});}
+var sv=null;try{sv=localStorage.getItem('dj-anim');}catch(e){}
+set(sv==='off'||(sv!=='on'&&window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches),false);
+function pz(){H.classList.toggle('pausa',document.hidden);}
+document.addEventListener('visibilitychange',pz);window.addEventListener('pagehide',function(){H.classList.add('pausa');});window.addEventListener('pageshow',pz);
+})();
 </script></body>
 </html>
